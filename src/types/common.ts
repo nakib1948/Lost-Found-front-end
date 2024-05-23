@@ -4,9 +4,9 @@ export type IMeta = {
   total: number;
 };
 export type IErrorInfo = {
-    statusCode: number;
-    message: string;
-    errorMessages: IErrorMessage
+  statusCode: number;
+  message: string;
+  errorMessages: IErrorMessage;
 };
 
 export type IErrorMessage = {
@@ -14,7 +14,20 @@ export type IErrorMessage = {
   message: string;
 };
 export type IResponseInfo = {
-    data: any;
-    meta?: IMeta;
-  };
-export const Gender = ["MALE","FEMALE"]
+  data: any;
+  meta?: IMeta;
+};
+export const Gender = ["MALE", "FEMALE"];
+
+interface IProfile {
+  bio: string;
+  age: number;
+  image: string;
+}
+
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  profile: IProfile;
+}

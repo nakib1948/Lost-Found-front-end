@@ -7,7 +7,10 @@ const nextConfig = {
                 hostname:"**"
             }
         ]
-    }
+    },
+    env: {
+        Image_Upload_Token:process.env.Image_Upload_Token
+      }
 }
 
 module.exports = nextConfig
