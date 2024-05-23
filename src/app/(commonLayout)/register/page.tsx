@@ -10,19 +10,25 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { FieldValues, useForm } from "react-hook-form";
-import LFForm from "@/Components/ReuseableForm/LFForm";
-import LFInput from "@/Components/ReuseableForm/LFInput";
-import LFFileUploader from "@/Components/ReuseableForm/LFFileUploader";
 import { imgUpload } from "@/services/imgUpload";
 import { registerUser } from "@/services/userRegister";
 import { toast } from "sonner";
-
+import { useForm, FieldValues } from "react-hook-form";
+import { TextField } from "@mui/material";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const methods = useForm()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FieldValues>();
   const handleRegister = async (values: FieldValues) => {
+    if (values.password !== values.confrimPassword) {
+      toast.error("both password do not matched.correct your password");
+      return;
+    }
     const registerData = {
       name: values.name,
       email: values.email,
@@ -34,17 +40,16 @@ export default function SignUp() {
       },
     };
     try {
-      const imgUrl = await imgUpload(values.file);
+      const imgUrl = await imgUpload(values.image[0]);
       registerData.profile.image = imgUrl;
       const res = await registerUser(registerData);
 
       if (res.success) {
         toast.success(res.message);
-        methods.reset(); 
       } else {
         toast.error(res.message);
       }
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err.message);
     }
   };
@@ -66,66 +71,117 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <LFForm onSubmit={handleRegister}>
+          <form onSubmit={handleSubmit(handleRegister)}>
             <Box sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <LFInput
-                    name="name"
-                    type="string"
+                  <TextField
+                    id="outlined-basic"
                     label="Name"
-                    sx={{ mb: 2 }}
+                    variant="outlined"
+                    {...register("name", { required: "name is required" })}
                     fullWidth
+                    size="small"
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <LFInput
-                    name="email"
-                    type="string"
+                  <TextField
+                    id="outlined-basic"
                     label="Email"
-                    sx={{ mb: 2 }}
+                    variant="outlined"
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "Invalid email address",
+                      },
+                    })}
                     fullWidth
+                    size="small"
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <LFInput
-                    name="password"
-                    type="string"
+                  <TextField
+                    id="outlined-basic"
                     label="Password"
-                    sx={{ mb: 2 }}
+                    variant="outlined"
+                    {...register("password", {
+                      required: "Password is required",
+                      pattern: {
+                        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/,
+                        message:
+                          "Password must contain at least one letter, one number, one special character, and be at least 6 characters long",
+                      },
+                    })}
                     fullWidth
+                    size="small"
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
-                  <LFInput
-                    name="confrimPassword"
-                    type="string"
+                  <TextField
+                    id="outlined-basic"
                     label="confrim Password"
-                    sx={{ mb: 2 }}
+                    variant="outlined"
+                    {...register("confrimPassword", {
+                      required: "confrimPassword is required",
+                      pattern: {
+                        value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/,
+                        message:
+                          "confrimPassword must contain at least one letter, one number, one special character, and be at least 6 characters long",
+                      },
+                    })}
                     fullWidth
+                    size="small"
+                    error={!!errors.confrimPassword}
+                    helperText={errors.confrimPassword?.message}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <LFInput
-                    name="age"
-                    type="number"
+                  <TextField
+                    id="outlined-basic"
                     label="Age"
-                    sx={{ mb: 2 }}
+                    type="number"
+                    variant="outlined"
+                    {...register("age", { required: "age is required" })}
                     fullWidth
+                    size="small"
+                    error={!!errors.age}
+                    helperText={errors.age?.message}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <LFFileUploader name="file" label="upload image" />
+                  <Button variant="contained" fullWidth component="label">
+                    Upload Image
+                    <input
+                      {...register("image", { required: "image is required" })}
+                      type="file"
+                      hidden
+                    />
+                  </Button>
+                  {errors.image && (
+                    <small className="text-red-500" role="alert">
+                      {errors.image.message}
+                    </small>
+                  )}
                 </Grid>
 
                 <Grid item xs={12}>
-                  <LFInput
-                    name="bio"
-                    type="string"
+                  <TextField
+                    id="outlined-basic"
                     label="Bio"
-                    sx={{ mb: 2 }}
+                    multiline
+                    variant="outlined"
+                    {...register("bio", { required: "bio is required" })}
                     fullWidth
-                    size="medium"
+                    error={!!errors.bio}
+                    helperText={errors.bio?.message}
                   />
                 </Grid>
               </Grid>
@@ -146,7 +202,7 @@ export default function SignUp() {
                 </Grid>
               </Grid>
             </Box>
-          </LFForm>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
