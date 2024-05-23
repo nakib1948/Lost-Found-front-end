@@ -1,34 +1,49 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
+import bgImg from "@/assets/lost_found-bg.jpg"
 const HeroSection = () => {
   return (
-    <Container
+    <Box
       sx={{
         display: "flex",
-        direction: "column",
-        my: 16,
-        textAlign:'center'
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      
+        textAlign: "center",
+        backgroundImage: `url(${bgImg.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        color: "white",
+       
+        boxSizing: "border-box",
+        opacity: 0.8, // Adjust opacity here
+          zIndex: -1,
       }}
     >
-      <Box sx={{ width: '75%',mx:'auto' }}>
-        <Typography variant="h3" component="h2" fontWeight={500}>
-        Retrieve your lost items, return what you’ve found!
+      <Box sx={{ width: "75%", mx: "auto", }}>
+        <Typography   variant="h3" component="h2" fontWeight={500}>
+          Retrieve your lost items, return what you have found!
         </Typography>
-      
-        <Typography variant="h6" component="p" fontWeight={400} my={2}>
-        Welcome to our Lost and Found platform, your go-to place for reuniting lost items with their owners. Report lost items, list found objects, and connect with others to bring belongings back to their rightful owners. Join us in making a difference and spreading kindness.
+
+        <Typography   variant="h6" component="p" fontWeight={500} my={2}>
+          Welcome to our Lost and Found platform, your go-to place for reuniting
+          lost items with their owners. Report lost items, list found objects,
+          and connect with others to bring belongings back to their rightful
+          owners. Join us in making a difference and spreading kindness.
         </Typography>
-        <Button>Make Appointment</Button>
+        <Button>Report a Lost Item</Button>
         <Button
           variant="outlined"
           sx={{
-            marginLeft: "5px",
+            marginLeft: "10px",
           }}
         >
-          Contact us
+          Report a Found Item
         </Button>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
