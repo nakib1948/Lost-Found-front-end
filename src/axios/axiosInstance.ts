@@ -25,8 +25,8 @@ instance.interceptors.response.use(
   //@ts-ignore
   function (response) {
     const responseObject: IResponseInfo = {
-      data: response?.data?.data,
-      meta: response?.data?.meta,
+      data: response?.data,
+      meta: response?.meta,
     };
     return responseObject;
   },

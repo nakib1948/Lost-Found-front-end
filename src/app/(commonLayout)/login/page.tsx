@@ -12,6 +12,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import userLogin from "@/services/userLogin";
+import { storeUserInfo } from "@/services/authService";
+import { tokenKey } from "@/constants/tokenKey";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -21,7 +26,19 @@ export default function SignIn() {
     watch,
     formState: { errors },
   } = useForm<FieldValues>();
-  const handleRegister = async (values: FieldValues) => {};
+  const router = useRouter();
+  const handleLogin = async (values: FieldValues) => {
+    
+    const res = await userLogin(values)
+    
+    if(res.success){
+      
+     await localStorage.setItem(tokenKey, res.data.token)
+     toast.success(res.message)
+     router.push("/")
+
+    }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -41,12 +58,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <form onSubmit={handleSubmit(handleLogin)}>
             <TextField
               id="outlined-basic"
               label="Email"
@@ -59,7 +71,7 @@ export default function SignIn() {
               error={!!errors.email}
               helperText={errors.email?.message}
               sx={{
-                mb:2
+                my: 2,
               }}
             />
             <TextField
@@ -89,7 +101,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>

@@ -1,15 +1,10 @@
 import { tokenKey } from "@/constants/tokenKey";
 import { decodedToken } from "@/utils/jwt";
 
-export const storeUserInfo = async ({
-  accessToken,
-}: {
-  accessToken: string;
-}) => {
-  if (!accessToken || typeof window === "undefined") {
-    return "";
-  }
-  return localStorage.setItem(tokenKey, accessToken);
+export const storeUserInfo = async (token:string) => {
+ 
+  console.log(token)
+  return localStorage.setItem(tokenKey, token);
 };
 
 export const getUserInfo = () => {
