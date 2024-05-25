@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import userLogin from "@/services/userLogin";
-import { storeUserInfo } from "@/services/authService";
 import { tokenKey } from "@/constants/tokenKey";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -77,6 +76,7 @@ export default function SignIn() {
             <TextField
               id="outlined-basic"
               label="Password"
+              type="password"
               variant="outlined"
               {...register("password", {
                 required: "Password is required",

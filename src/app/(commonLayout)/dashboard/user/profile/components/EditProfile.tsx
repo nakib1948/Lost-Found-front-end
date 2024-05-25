@@ -41,9 +41,6 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
     };
     try {
       const updateResponse = await updateMYProfile(updateData);
-      console.log(updateResponse);
-      
-
       if (updateResponse.data.success) {
         await localStorage.setItem(tokenKey, updateResponse.data.data.token);
         toast.success(updateResponse.data.message);
@@ -51,7 +48,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
       await refetch();
       setOpen(false);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message)
     }
   };
 

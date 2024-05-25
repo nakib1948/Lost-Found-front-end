@@ -108,6 +108,7 @@ export default function SignUp() {
                   <TextField
                     id="outlined-basic"
                     label="Password"
+                    type="password"
                     variant="outlined"
                     {...register("password", {
                       required: "Password is required",
@@ -128,6 +129,7 @@ export default function SignUp() {
                   <TextField
                     id="outlined-basic"
                     label="confrim Password"
+                    type="password"
                     variant="outlined"
                     {...register("confrimPassword", {
                       required: "confrimPassword is required",
