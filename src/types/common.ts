@@ -1,3 +1,5 @@
+import { ROLE } from "@/constants/role";
+
 export type IMeta = {
   page: number;
   limit: number;
@@ -31,3 +33,4 @@ export interface IUser {
   password: string;
   profile: IProfile;
 }
+export type Role = keyof typeof ROLE;

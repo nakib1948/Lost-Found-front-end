@@ -14,6 +14,7 @@ const FoundItempage = () => {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm<FieldValues>();
@@ -33,9 +34,10 @@ const FoundItempage = () => {
     };
     try {
       const res = await createFoundItem(data);
-      console.log(res)
+      
       if (res.data.success) {
         toast.success(res.data.message);
+        reset()
       } else {
         toast.error(res.data.message);
       }
