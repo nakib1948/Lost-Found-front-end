@@ -34,3 +34,11 @@ export interface IUser {
   profile: IProfile;
 }
 export type Role = keyof typeof ROLE;
+
+ export interface IUser {
+  createdAt: string; 
+  email: string;
+  id: string; 
+  name: string;
+  updatedAt: string; 
+}

@@ -58,17 +58,6 @@ export default function Dashboard({
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="body2" noWrap component="div" color="gray">
-            Hi, Hayat Hossain
-          </Typography>
-          <Typography
-            variant="body2"
-            noWrap
-            component="div"
-            color="primary.main"
-          >
-            Welcome To, PH Health Care!
-          </Typography>
         </Toolbar>
       </AppBar>
       <Box

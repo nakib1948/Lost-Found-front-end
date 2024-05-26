@@ -7,14 +7,34 @@ type headers = {
 
 const HeaderSection = ({ title, subTitle }: headers) => {
   return (
-    <Box sx={{ width: "75%", mx: "auto", textAlign: "center", mt: 4 }}>
-      <Typography variant="h5" component="h6" fontWeight={500}>
+    <Box textAlign="center">
+      <Typography
+        variant="h6"
+        fontWeight="bold"
+        textTransform="uppercase"
+        color="primary"
+        fontStyle="italic"
+        gutterBottom
+      >
         {title}
       </Typography>
-
-      <Typography variant="h6" component="p" fontWeight={500} my={2}>
+      <Typography
+        variant="body1"
+        fontStyle="italic"
+        color="textSecondary"
+        sx={{ mx: "auto", width: "50%", mt: 2 }}
+      >
         {subTitle}
       </Typography>
+      <Box
+        sx={{
+          bgcolor: "primary.main",
+          height: "4px",
+          width: "96px",
+          mx: "auto",
+          mt: 1,
+        }}
+      ></Box>
     </Box>
   );
 };
