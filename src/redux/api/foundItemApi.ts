@@ -11,7 +11,16 @@ export const foundItemApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [allTagTypes.foundItem],
     }),
+    foundLostItem: build.query({
+      query: () => {
+         return {
+            url: '/found-items/userFoundItem',
+            method: 'GET',
+         };
+      },
+      providesTags: [allTagTypes.foundLostItem],
+   }),
   }),
 });
 
-export const { useCreateFoundItemMutation } = foundItemApi;
+export const { useCreateFoundItemMutation, useFoundLostItemQuery } = foundItemApi;

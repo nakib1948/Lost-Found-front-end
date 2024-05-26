@@ -5,7 +5,8 @@ export enum allTagTypes {
   userProfile = "userProfile",
   userUpdateProfile = "userUpdateProfile",
   userUpdatePassword = "userUpdatePassword",
-  getLostItem = "getLostItem"
+  getLostItem = "getLostItem",
+  foundLostItem = "foundLostItem",
 }
 
 export const allTagList = [
@@ -16,4 +17,5 @@ export const allTagList = [
   allTagTypes.userUpdateProfile,
   allTagTypes.userUpdatePassword,
   allTagTypes.getLostItem,
+  allTagTypes.foundLostItem,
 ];

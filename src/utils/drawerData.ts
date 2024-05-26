@@ -39,11 +39,6 @@ export const drawerItems = (role: Role) => {
           path: `${role}/change-password`,
           icon: LockResetIcon,
         },
-        {
-          title: "Edit Profile",
-          path: `${role}/edit-profile`,
-          icon: EditIcon,
-        },
       );
       break;
     case ROLE.ADMIN:

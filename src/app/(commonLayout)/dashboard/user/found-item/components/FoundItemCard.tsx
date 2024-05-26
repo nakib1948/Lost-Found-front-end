@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import { ILostItem } from '@/types/lostItemTypes';
 import { formatDate } from '@/utils/dateFormatter';
+import { IFoundItem } from '@/types/foundItemTypes';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -26,22 +27,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function LostItemCard({data}:{data:ILostItem}) {
-  const [expanded, setExpanded] = React.useState(false);
-  const date= formatDate(data.date) 
+export default function FoundItemCard({data}:{data:IFoundItem}) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {data.user.name.slice(0,1)}
-          </Avatar>
-        }
-      
-        title={`Status: ${data.foundStatus}`}
-        subheader={date}
-      />
       <CardMedia
         component="img"
         height="194"

@@ -27,15 +27,15 @@ export default function SignIn() {
   } = useForm<FieldValues>();
   const router = useRouter();
   const handleLogin = async (values: FieldValues) => {
-    
-    const res = await userLogin(values)
-    
-    if(res.success){
-      
-     await localStorage.setItem(tokenKey, res.data.token)
-     toast.success(res.message)
-     router.push("/")
+    const res = await userLogin(values);
 
+    if (res.success) {
+      await localStorage.setItem(tokenKey, res.data.token);
+      toast.success(res.message);
+      router.push("/");
+    }
+    else {
+      toast.error(res.message)
     }
   };
 
