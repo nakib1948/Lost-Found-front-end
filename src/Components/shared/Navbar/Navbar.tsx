@@ -101,7 +101,7 @@ function Navbar() {
             <Typography component={Link} href="/" sx={{ my: 2, color: "white", display: "block" }}>
               Lost Items
             </Typography>
-            <Typography component={Link} href="/" sx={{ my: 2, color: "white", display: "block" }}>
+            <Typography component={Link} href="/allfounditem" sx={{ my: 2, color: "white", display: "block" }}>
               Found Items
             </Typography>
             <Typography component={Link} href="/" sx={{ my: 2, color: "white", display: "block" }}>

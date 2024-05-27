@@ -8,5 +8,19 @@ type TDebouncedProps = {
   delay: number;
 };
 
+export const useDebounced = ({ searchQuery, delay }: TDebouncedProps) => {
+  const [debouncedValue, setDebouncedValue] = useState<String>(searchQuery);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(searchQuery);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery, delay]);
+  return debouncedValue
+};
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

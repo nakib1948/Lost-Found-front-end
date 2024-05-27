@@ -1,10 +1,22 @@
 "use client";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { imgUpload } from "@/services/imgUpload";
 import { toast } from "sonner";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm, FieldValues, Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { getUserInfo } from "@/services/authService";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
@@ -16,10 +28,12 @@ const FoundItempage = () => {
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors },
   } = useForm<FieldValues>();
   const [createFoundItem] = useCreateFoundItemMutation();
   const handleRegister = async (values: FieldValues) => {
+   
     const user = await getUserInfo();
     const imgUrl = await imgUpload(values.image[0]);
     const data: FieldValues = {
@@ -28,16 +42,17 @@ const FoundItempage = () => {
       description: values.description,
       date: values.date,
       location: values.location,
+      district: values.district,
       email: user.email,
       phone: values.phone,
       image: imgUrl,
     };
     try {
       const res = await createFoundItem(data);
-      
+
       if (res.data.success) {
         toast.success(res.data.message);
-        reset()
+        reset();
       } else {
         toast.error(res.data.message);
       }
@@ -82,19 +97,40 @@ const FoundItempage = () => {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="itemCategory"
-                      variant="outlined"
-                      {...register("itemCategory", {
-                        required: "itemCategory is required",
-                      })}
-                      placeholder="Ex: Phone, watch, key..."
-                      fullWidth
-                      size="small"
-                      error={!!errors.itemCategory}
-                      helperText={errors.itemCategory?.message}
-                    />
+                    <FormControl fullWidth error={!!errors.itemCategory}>
+                      <InputLabel id="demo-simple-select-label">
+                        Item Category
+                      </InputLabel>
+                      <Controller
+                        name="itemCategory"
+                        control={control}
+                        defaultValue=""
+                        rules={{ required: "itemCategory is required" }}
+                        render={({ field }) => (
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            size="small"
+                            label="itemCategory"
+                            {...field}
+                            fullWidth
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={"Phone"}>Phone</MenuItem>
+                            <MenuItem value={"Watch"}>Watch</MenuItem>
+                            <MenuItem value={"Walet"}>Walet</MenuItem>
+                            <MenuItem value={"Money"}>Money</MenuItem>
+                            <MenuItem value={"Document"}>Document</MenuItem>
+                            <MenuItem value={"Instrument"}>Instrument</MenuItem>
+                          </Select>
+                        )}
+                      />
+                      <FormHelperText>
+                        {errors.itemCategory?.message}
+                      </FormHelperText>
+                    </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -123,6 +159,42 @@ const FoundItempage = () => {
                       error={!!errors.location}
                       helperText={errors.location?.message}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <FormControl fullWidth error={!!errors.district}>
+                      <InputLabel id="demo-simple-select-label">
+                        District
+                      </InputLabel>
+                      <Controller
+                        name="district"
+                        control={control}
+                        defaultValue=""
+                        rules={{ required: "district is required" }}
+                        render={({ field }) => (
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            size="small"
+                            label="district"
+                            {...field}
+                            fullWidth
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={"Chittagong"}>Chittagong</MenuItem>
+                            <MenuItem value={"Dhaka"}>Dhaka</MenuItem>
+                            <MenuItem value={"Khulna"}>Khulna</MenuItem>
+                            <MenuItem value={"Rajsahi"}>Rajsahi</MenuItem>
+                            <MenuItem value={"Borisal"}>Borisal</MenuItem>
+                            <MenuItem value={"sylet"}>sylet</MenuItem>
+                          </Select>
+                        )}
+                      />
+                      <FormHelperText>
+                        {errors.district?.message}
+                      </FormHelperText>
+                    </FormControl>
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
