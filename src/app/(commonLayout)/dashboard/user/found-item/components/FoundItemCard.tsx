@@ -1,50 +1,38 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import { ILostItem } from '@/types/lostItemTypes';
-import { formatDate } from '@/utils/dateFormatter';
-import { IFoundItem } from '@/types/foundItemTypes';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { IFoundItem } from "@/types/foundItemTypes";
+import { Button, CardActions } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-export default function FoundItemCard({data}:{data:IFoundItem}) {
-
+export default function FoundItemCard({ data }: { data: IFoundItem }) {
+  const router = useRouter()
+  const handleSeeClaim = (id:string)=>{
+   router.push(`found-item/${id}`)
+  }
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="194"
+        sx={{ height: 194, objectFit: "cover" }}
         image={data.image}
         alt="Paella dish"
       />
       <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-            {data.itemCategory}
-          </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          {data.itemCategory}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
           {data.description}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button onClick={()=>handleSeeClaim(data.id)} fullWidth size="small">
+          See Claim
+        </Button>
+      </CardActions>
     </Card>
   );
 }

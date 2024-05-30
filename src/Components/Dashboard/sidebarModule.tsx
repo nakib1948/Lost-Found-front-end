@@ -14,9 +14,9 @@ const SideBarItem = ({ item }: any) => {
       <ListItem disablePadding
       sx={{
         ... (pathname === linkPath ? {
-            borderRight:"3px solid #1586FD",
+            borderRight:"3px solid #4a536b",
             "& svg":{
-                color:"#1586FD"
+                color:"#4a536b"
             }
         }:{})
 

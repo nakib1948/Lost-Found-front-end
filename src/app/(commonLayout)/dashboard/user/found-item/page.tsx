@@ -8,7 +8,6 @@ import FoundItemCard from "./components/FoundItemCard";
 
 const FoundItemPage = () => {
   const { data, isLoading, refetch } = useFoundLostItemQuery(undefined);
-  console.log(data)
   return (
     <Container>
       {isLoading && <Loading />}
