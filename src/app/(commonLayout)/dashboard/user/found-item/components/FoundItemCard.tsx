@@ -27,6 +27,9 @@ export default function FoundItemCard({ data }: { data: IFoundItem }) {
         <Typography variant="body2" color="text.secondary">
           {data.description}
         </Typography>
+        <Typography variant="body1" color="text.secondary">
+          Ower Status: {data.status}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button onClick={()=>handleSeeClaim(data.id)} fullWidth size="small">

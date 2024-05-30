@@ -23,12 +23,22 @@ export const claimApi = baseApi.injectEndpoints({
     getSingleProductClaim: build.query({
       query: (id) => {
         return {
-          url: `/${id}`,
+          url: `/claims/${id}`,
           method: "GET",
         };
       },
       invalidatesTags: [allTagTypes.getSingleProductClaim],
     }),
+    updateClaimStatus: build.mutation({
+      query: (data) => {
+         return {
+            url: '/claims',
+            method: 'PATCH',
+            data,
+         };
+      },
+      invalidatesTags: [allTagTypes.updateClaimStatus],
+   }),
   }),
 });
 
@@ -36,4 +46,5 @@ export const {
   useCreateClaimMutation,
   useGetClaimItemQuery,
   useGetSingleProductClaimQuery,
+  useUpdateClaimStatusMutation
 } = claimApi;

@@ -12,5 +12,6 @@ export interface IFoundItem {
     phone: string;
     updatedAt: string; 
     userId: string;  
+    status:string;
   }
   
