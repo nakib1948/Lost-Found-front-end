@@ -87,7 +87,7 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: { xs: 1, md: 0 } }}>
-            <Image src={navlogo} alt="nav-logo" height={40} width={60} />
+            <Image src={navlogo} alt="nav-logo" height={35} width={50} />
           </Box>
 
           <Box
@@ -98,13 +98,13 @@ function Navbar() {
               justifyContent: "center",
             }}
           >
-            <Typography component={Link} href="/" sx={{ my: 2, color: "white", display: "block" }}>
+            <Typography component={Link} href="/allLostItem" sx={{ my: 2, color: "white", display: "block" }}>
               Lost Items
             </Typography>
             <Typography component={Link} href="/allfounditem" sx={{ my: 2, color: "white", display: "block" }}>
               Found Items
             </Typography>
-            <Typography component={Link} href="/" sx={{ my: 2, color: "white", display: "block" }}>
+            <Typography component={Link} href="/dashboard" sx={{ my: 2, color: "white", display: "block" }}>
               Dashboard
             </Typography>
           </Box>

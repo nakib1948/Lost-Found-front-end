@@ -13,14 +13,39 @@ export const lostItemApi = baseApi.injectEndpoints({
     }),
     getLostItem: build.query({
       query: () => {
-         return {
-            url: '/lost-item',
-            method: 'GET',
-         };
+        return {
+          url: "/lost-item",
+          method: "GET",
+        };
       },
       providesTags: [allTagTypes.getLostItem],
-   }),
+    }),
+    getAllLostItem: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: "/lost-item/getAllLostItem",
+          method: "GET",
+          params: arg,
+        };
+      },
+      providesTags: [allTagTypes.getAllLostItem],
+    }),
+    updateLostItemStatus: build.mutation({
+      query: (data) => {
+        return {
+          url: "/lost-item",
+          method: "PATCH",
+          data,
+        };
+      },
+      invalidatesTags: [allTagTypes.updateLostItemStatus],
+    }),
   }),
 });
 
-export const { useCreateLostItemMutation,useGetLostItemQuery } = lostItemApi;
+export const {
+  useCreateLostItemMutation,
+  useGetLostItemQuery,
+  useGetAllLostItemQuery,
+  useUpdateLostItemStatusMutation
+} = lostItemApi;

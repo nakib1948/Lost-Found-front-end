@@ -3,7 +3,7 @@
 import { IUser } from "@/types/common";
 
 export const registerUser = async (data: IUser) => {
-  const res = await fetch(`${process.env.BACKEND_API_URL}/register`, {
+  const res = await fetch(`${process.env.BACKEND_API_URL}/user/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

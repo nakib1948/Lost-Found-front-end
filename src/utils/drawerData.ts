@@ -3,7 +3,7 @@ import GroupIcon from "@mui/icons-material/Group";;
 import { Role } from "@/types/common";
 import { ROLE } from "@/constants/role";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EditIcon from '@mui/icons-material/Edit';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
@@ -45,13 +45,13 @@ export const drawerItems = (role: Role) => {
       roleData.push(
         {
           title: "Manage User",
-          path: `${role}`,
+          path: `${role}/manage-user`,
           icon: ManageAccountsIcon,
         },
         {
-          title: "Dashboard",
-          path: `${role}/dashboard`,
-          icon: GroupIcon,
+          title: "Statistics",
+          path: `${role}/statistics`,
+          icon: AnalyticsIcon,
         },
       );
       break;

@@ -8,10 +8,10 @@ import { Button, CardActions } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 export default function FoundItemCard({ data }: { data: IFoundItem }) {
-  const router = useRouter()
-  const handleSeeClaim = (id:string)=>{
-   router.push(`found-item/${id}`)
-  }
+  const router = useRouter();
+  const handleSeeClaim = (id: string) => {
+    router.push(`found-item/${id}`);
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -32,7 +32,7 @@ export default function FoundItemCard({ data }: { data: IFoundItem }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={()=>handleSeeClaim(data.id)} fullWidth size="small">
+        <Button onClick={() => handleSeeClaim(data.id)} fullWidth size="small">
           See Claim
         </Button>
       </CardActions>

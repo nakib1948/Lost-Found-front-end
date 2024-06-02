@@ -1,4 +1,4 @@
-import { Box, List, Stack, Typography } from "@mui/material";
+import { Box, Divider, List, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import Link from "next/link";
 import { getUserInfo } from "@/services/authService";
@@ -34,6 +34,7 @@ const Sidebar = () => {
           Lost and Found
         </Typography>
       </Stack>
+      <Divider />
       <List  sx={{mt:2}}>
         {drawerItems(role as Role).map((item:any, index:number) => (
           <SideBarItem key={index} item={item} index={0} />

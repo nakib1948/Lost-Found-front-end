@@ -1,7 +1,6 @@
 "use client";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
 import Loading from "@/Components/Loading/Loading";
-import { useFoundAllLostItemQuery } from "@/redux/api/foundItemApi";
 import {
   Box,
   Button,
@@ -18,10 +17,11 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { IFoundItem } from "@/types/foundItemTypes";
-import AllFoundItemCard from "./component/AllFoundItemCard";
 import { useDebounced } from "@/redux/hooks";
+import { useGetAllLostItemQuery } from "@/redux/api/lostItemApi";
+import AllLostItemCard from "./component/AllLostItemCard";
 
-const FoundItemspage = () => {
+const LostItemspage = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,7 +47,7 @@ const FoundItemspage = () => {
     query["itemCategory"] = itemCategory;
   }
 
-  const { data, isLoading } = useFoundAllLostItemQuery({ ...query });
+  const { data, isLoading } = useGetAllLostItemQuery({ ...query });
   const meta = data?.meta;
   const pageCount = meta?.total ? Math.ceil(meta.total / limit) : 0;
 
@@ -58,10 +58,12 @@ const FoundItemspage = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  console.log(data)
   return (
     <Container sx={{ mt: 1 }}>
       <HeaderSection
-        title="All found Item"
+        title="All Lost Item"
         subTitle="search for your lost item by category, location,keywords"
       />
       <Stack direction="row" alignItems="center">
@@ -124,13 +126,12 @@ const FoundItemspage = () => {
             onChange={(e)=>setSearchTerm(e.target.value)}
           />
         </Stack>
-         <Button>Report a found item</Button>
       </Stack>
 
       <Grid container spacing={2} sx={{ mt: 1 }}>
-        {data?.data.map((data: IFoundItem, index: number) => (
+        {data?.data.map((data: any, index: number) => (
           <Grid item xs={12} sm={10} md={4} key={index}>
-            <AllFoundItemCard data={data} />
+            <AllLostItemCard data={data} />
           </Grid>
         ))}
       </Grid>
@@ -146,4 +147,4 @@ const FoundItemspage = () => {
   );
 };
 
-export default FoundItemspage;
+export default LostItemspage;

@@ -11,7 +11,10 @@ export enum allTagTypes {
   getClaimItem = "getClaimItem",
   getSingleProductClaim = "getSingleProductClaim",
   updateClaimStatus = "updateClaimStatus",
-
+  getAllUser = "getAllUser",
+  updateStatus = "updateStatus",
+  getAllLostItem = "getAllLostItem",
+  updateLostItemStatus = "updateLostItemStatus",
 }
 
 export const allTagList = [
@@ -27,4 +30,8 @@ export const allTagList = [
   allTagTypes.getClaimItem,
   allTagTypes.getSingleProductClaim,
   allTagTypes.updateClaimStatus,
+  allTagTypes.getAllUser,
+  allTagTypes.updateStatus,
+  allTagTypes.getAllLostItem,
+  allTagTypes.updateLostItemStatus,
 ];
