@@ -14,15 +14,15 @@ const HeroSection = () => {
         backgroundImage: `url(${bgImg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        height: "80vh",
         color: "white",
        
         boxSizing: "border-box",
-        opacity: 0.8, // Adjust opacity here
+        opacity: 0.8, 
           zIndex: -1,
       }}
     >
-      <Box sx={{ width: "75%", mx: "auto", }}>
+      <Box sx={{ width: "50%", mx: "auto", }}>
         <Typography   variant="h3" component="h2" fontWeight={500}>
           Retrieve your lost items, return what you have found!
         </Typography>

@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import Providers from "@/lib/Providers/Providers";
 import { Toaster } from "sonner";
 import Navbar from "@/Components/shared/Navbar/Navbar";
+import Footer from "@/Components/shared/Footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
             <Toaster position="top-center" />
             <Navbar />
             {children}
+            <Footer/>
           </AppRouterCacheProvider>
         </body>
       </html>

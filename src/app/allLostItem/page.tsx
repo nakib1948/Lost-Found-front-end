@@ -16,7 +16,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { IFoundItem } from "@/types/foundItemTypes";
 import { useDebounced } from "@/redux/hooks";
 import { useGetAllLostItemQuery } from "@/redux/api/lostItemApi";
 import AllLostItemCard from "./component/AllLostItemCard";
@@ -59,7 +58,6 @@ const LostItemspage = () => {
     return <Loading />;
   }
 
-  console.log(data)
   return (
     <Container sx={{ mt: 1 }}>
       <HeaderSection
@@ -126,6 +124,7 @@ const LostItemspage = () => {
             onChange={(e)=>setSearchTerm(e.target.value)}
           />
         </Stack>
+        <Button>Report a lost item</Button>
       </Stack>
 
       <Grid container spacing={2} sx={{ mt: 1 }}>

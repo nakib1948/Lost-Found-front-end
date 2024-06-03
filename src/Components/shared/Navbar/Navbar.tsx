@@ -9,7 +9,6 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import navlogo from "@/assets/lost_found-logo.png";
@@ -42,7 +41,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ background: "#10898d" }}>
+    <AppBar position="static" sx={{ background: "#3D52A0"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -86,7 +85,7 @@ function Navbar() {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: { xs: 1, md: 0 } }}>
+          <Box component={Link} href="/" sx={{ flexGrow: { xs: 1, md: 0 } }}>
             <Image src={navlogo} alt="nav-logo" height={35} width={50} />
           </Box>
 

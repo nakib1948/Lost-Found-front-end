@@ -2,11 +2,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, Button, CardActions } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { formatDate } from "@/utils/dateFormatter";
+import Link from "next/link";
 
-export default function AllLostItemCard({ data }: any) {
+export default function LostItemCard({ data }: any) {
   const date = formatDate(data.date);
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -26,10 +27,13 @@ export default function AllLostItemCard({ data }: any) {
           <Typography variant="body2" color="text.secondary">
             {data.description}
           </Typography>
+          <Typography variant="body2">status: {data.foundStatus}</Typography>
+          <Typography variant="body2">Date: {date}</Typography>
         </Box>
-        <Typography variant="body1">status: {data.foundStatus}</Typography>
-        <Typography variant="body1">Date: {date}</Typography>
       </CardContent>
+      <CardActions>
+         <Button fullWidth component={Link} href="/foundItem"> Report if found</Button>
+      </CardActions>
     </Card>
   );
 }
