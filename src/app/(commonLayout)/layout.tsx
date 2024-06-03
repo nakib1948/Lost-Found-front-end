@@ -1,12 +1,15 @@
-import Navbar from "@/Components/shared/Navbar/Navbar";
+"use client";
 
+import { isLoggedIn } from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <div className="min-h-screen">{children}</div>
-    </>
-  );
+  const router = useRouter();
+  if (!isLoggedIn()) {
+    return router.push("/login");
+  }
+
+  return <div className="min-h-screen">{children}</div>;
 };
 
 export default CommonLayout;

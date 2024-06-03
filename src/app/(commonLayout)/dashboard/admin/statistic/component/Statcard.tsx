@@ -18,7 +18,7 @@ export default function Statcard({ name, count, icon }: TProps) {
       <Image src={icon} alt="found" height={50} width={50} />
       </Box>
       <Typography variant="subtitle1">Total Lost Item</Typography>
-      <Typography variant="h4" color="primary">{data.data.totalLostItem}U</Typography>
+      <Typography variant="h4" color="primary">{data?.data?.totalLostItem}U</Typography>
     </CardContent>
   </Card>
   );

@@ -23,11 +23,11 @@ const ProofCard = ({ open, setOpen, data }: TProps) => {
              Lost Date
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            <CalendarMonthIcon /> {data.lostDate}
+            <CalendarMonthIcon /> {data?.lostDate}
           </Typography>
           <Box sx={{ height: "70px", overflow: "auto" }}>
             <Typography variant="body2" color="text.secondary">
-              {data.request}
+              {data?.request}
             </Typography>
           </Box>
         </CardContent>

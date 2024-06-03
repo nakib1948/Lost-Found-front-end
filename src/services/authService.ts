@@ -1,9 +1,8 @@
 import { tokenKey } from "@/constants/tokenKey";
 import { decodedToken } from "@/utils/jwt";
+import { checkAndRemoveExpiredToken } from "./checkAndRemoveExpiredToken";
 
-export const storeUserInfo = async (token:string) => {
- 
-  console.log(token)
+export const storeUserInfo = async (token: string) => {
   return localStorage.setItem(tokenKey, token);
 };
 
@@ -22,14 +21,13 @@ export const getUserInfo = () => {
   }
 };
 
-export const isLoggedIn = () => {
-  if (!tokenKey || typeof window === "undefined") {
-    return "";
-  }
+export const isLoggedIn =  () => {
   const authToken = localStorage.getItem(tokenKey);
-  if (authToken) {
+  const checkExpiration =  checkAndRemoveExpiredToken(authToken);
+  if (authToken ) {
     return !!authToken;
   }
+  return false
 };
 
 export const removeUser = () => {

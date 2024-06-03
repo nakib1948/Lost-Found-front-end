@@ -36,16 +36,16 @@ export default function LostItemCard({ data, refetch }: any) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {data.user.name.slice(0, 1)}
+            {data?.user.name.slice(0, 1)}
           </Avatar>
         }
-        title={`Status: ${data.foundStatus}`}
+        title={`Status: ${data?.foundStatus}`}
         subheader={date}
       />
       <CardMedia
         component="img"
         height="194"
-        image={data.image}
+        image={data?.image}
         alt="Paella dish"
       />
       <CardContent>

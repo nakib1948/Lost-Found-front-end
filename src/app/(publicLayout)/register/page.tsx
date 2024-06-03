@@ -3,7 +3,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -15,15 +14,20 @@ import { registerUser } from "@/services/userRegister";
 import { toast } from "sonner";
 import { useForm, FieldValues } from "react-hook-form";
 import { TextField } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import userLogin from "@/services/userLogin";
+import { tokenKey } from "@/constants/tokenKey";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>();
+  const router = useRouter();
   const handleRegister = async (values: FieldValues) => {
     if (values.password !== values.confrimPassword) {
       toast.error("both password do not matched.correct your password");
@@ -39,6 +43,10 @@ export default function SignUp() {
         image: "",
       },
     };
+    const loginData = {
+      email: values.email,
+      password: values.password,
+    };
     try {
       const imgUrl = await imgUpload(values.image[0]);
       registerData.profile.image = imgUrl;
@@ -46,6 +54,17 @@ export default function SignUp() {
 
       if (res.success) {
         toast.success(res.message);
+        reset();
+        const loginres = await userLogin(loginData);
+
+        if (loginres.success) {
+          await localStorage.setItem(tokenKey, loginres.data.token);
+
+          router.push("/");
+          router.refresh();
+        } else {
+          toast.error(loginres.message);
+        }
       } else {
         toast.error(res.message);
       }
@@ -198,7 +217,7 @@ export default function SignUp() {
 
               <Grid container justifyContent="center">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/login" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

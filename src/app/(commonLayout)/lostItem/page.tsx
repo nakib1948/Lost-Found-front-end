@@ -9,6 +9,8 @@ import { TextField } from "@mui/material";
 import { getUserInfo } from "@/services/authService";
 import { useCreateLostItemMutation } from "@/redux/api/lostItemApi";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
+import Footer from "@/Components/shared/Footer/Footer";
+import Navbar from "@/Components/shared/Navbar/Navbar";
 const defaultTheme = createTheme();
 const LostItempage = () => {
   const {
@@ -42,137 +44,141 @@ const LostItempage = () => {
     }
   };
   return (
-    <Container>
-      <HeaderSection
-        title=" Submit Lost Property Report"
-        subTitle=" Report your lost item by providing its category, description, date,
-          location, and your contact details. This helps us identify and return
+    <>
+      <Navbar />
+      <Container>
+        <HeaderSection
+          title=" Submit Lost Property Report"
+          subTitle=" Report your lost item by providing its category, description, date,
+        location, and your contact details. This helps us identify and return
           your item quickly."
-      />
-      <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="md">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <form onSubmit={handleSubmit(handleRegister)}>
-              <Box sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="ItemCategory"
-                      variant="outlined"
-                      {...register("itemCategory", {
-                        required: "ItemCategory is required",
-                      })}
-                      placeholder="Ex: Phone, watch, key..."
-                      fullWidth
-                      size="small"
-                      error={!!errors.ItemCategory}
-                      helperText={errors.ItemCategory?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="phone"
-                      variant="outlined"
-                      {...register("phone", {
-                        required: "phone is required",
-                      })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.phone}
-                      helperText={errors.phone?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="location"
-                      variant="outlined"
-                      {...register("location", {
-                        required: "location is required",
-                      })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.location}
-                      helperText={errors.location?.message}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="date"
-                      type="date"
-                      variant="outlined"
-                      {...register("date", { required: "date is required" })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.date}
-                      helperText={errors.date?.message}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <Button
-                      sx={{ py: 1 }}
-                      variant="contained"
-                      fullWidth
-                      component="label"
-                    >
-                      Upload Item Image
-                      <input
-                        {...register("image", {
-                          required: "image is required",
+        />
+        <ThemeProvider theme={defaultTheme}>
+          <Container component="main" maxWidth="md">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <form onSubmit={handleSubmit(handleRegister)}>
+                <Box sx={{ mt: 3 }}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="ItemCategory"
+                        variant="outlined"
+                        {...register("itemCategory", {
+                          required: "ItemCategory is required",
                         })}
-                        type="file"
-                        hidden
+                        placeholder="Ex: Phone, watch, key..."
+                        fullWidth
+                        size="small"
+                        error={!!errors.ItemCategory}
+                        helperText={errors.ItemCategory?.message}
                       />
-                    </Button>
-                    {errors.image && (
-                      <small className="text-red-500" role="alert">
-                        {errors.image.message}
-                      </small>
-                    )}
-                  </Grid>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="phone"
+                        variant="outlined"
+                        {...register("phone", {
+                          required: "phone is required",
+                        })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.phone}
+                        helperText={errors.phone?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="location"
+                        variant="outlined"
+                        {...register("location", {
+                          required: "location is required",
+                        })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.location}
+                        helperText={errors.location?.message}
+                      />
+                    </Grid>
 
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="description"
-                      multiline
-                      variant="outlined"
-                      {...register("description", {
-                        required: "description is required",
-                      })}
-                      fullWidth
-                      error={!!errors.description}
-                      helperText={errors.description?.message}
-                    />
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="date"
+                        type="date"
+                        variant="outlined"
+                        {...register("date", { required: "date is required" })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.date}
+                        helperText={errors.date?.message}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <Button
+                        sx={{ py: 1 }}
+                        variant="contained"
+                        fullWidth
+                        component="label"
+                      >
+                        Upload Item Image
+                        <input
+                          {...register("image", {
+                            required: "image is required",
+                          })}
+                          type="file"
+                          hidden
+                        />
+                      </Button>
+                      {errors.image && (
+                        <small className="text-red-500" role="alert">
+                          {errors.image.message}
+                        </small>
+                      )}
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="description"
+                        multiline
+                        variant="outlined"
+                        {...register("description", {
+                          required: "description is required",
+                        })}
+                        fullWidth
+                        error={!!errors.description}
+                        helperText={errors.description?.message}
+                      />
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Submit
-                </Button>
-              </Box>
-            </form>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    </Container>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          </Container>
+        </ThemeProvider>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

@@ -8,10 +8,12 @@ import { IFoundItem } from "@/types/foundItemTypes";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import ClaimModal from "./ClaimModal";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { getUserInfo } from "@/services/authService";
 
 export default function AllFoundItemCard({ data }: { data: IFoundItem }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = getUserInfo();
   return (
     <>
       <ClaimModal open={isModalOpen} setOpen={setIsModalOpen} data={data} />
@@ -26,7 +28,7 @@ export default function AllFoundItemCard({ data }: { data: IFoundItem }) {
             {data.foundItemName}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-           <LocationOnIcon/> {data.location}
+            <LocationOnIcon /> {data.location}
           </Typography>
           <Box sx={{ height: "70px", overflow: "auto" }}>
             <Typography variant="body2" color="text.secondary">
@@ -34,8 +36,14 @@ export default function AllFoundItemCard({ data }: { data: IFoundItem }) {
             </Typography>
           </Box>
         </CardContent>
+
         <CardActions>
-          <Button fullWidth size="small" onClick={() => setIsModalOpen(true)}>
+          <Button
+            disabled={!user?.role}
+            fullWidth
+            size="small"
+            onClick={() => setIsModalOpen(true)}
+          >
             Claim
           </Button>
         </CardActions>

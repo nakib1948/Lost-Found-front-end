@@ -29,7 +29,7 @@ const Statistics = () => {
               {/* <FavoriteIcon color="primary" style={{ fontSize: 32 }} /> */}
             </Box>
             <Typography variant="subtitle1">Total Found Item</Typography>
-            <Typography variant="h4" color="primary">{data.data.totalFoundItem}U</Typography>
+            <Typography variant="h4" color="primary">{data?.data?.totalFoundItem}U</Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -40,7 +40,7 @@ const Statistics = () => {
             <Image src={lost} alt="found" height={50} width={50} />
             </Box>
             <Typography variant="subtitle1">Total Lost Item</Typography>
-            <Typography variant="h4" color="primary">{data.data.totalLostItem}U</Typography>
+            <Typography variant="h4" color="primary">{data?.data?.totalLostItem}U</Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -51,7 +51,7 @@ const Statistics = () => {
             <Image src={claim} alt="found" height={50} width={50} />
             </Box>
             <Typography variant="subtitle1">Total Found Item Owner</Typography>
-            <Typography variant="h4" color="primary">{data.data.ownerFound}U</Typography>
+            <Typography variant="h4" color="primary">{data?.data?.ownerFound}U</Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -62,7 +62,7 @@ const Statistics = () => {
             <Image src={user} alt="found" height={50} width={50} />
             </Box>
             <Typography variant="subtitle1">Total user</Typography>
-            <Typography variant="h4" color="primary">{data.data.totalUser}</Typography>
+            <Typography variant="h4" color="primary">{data?.data?.totalUser}</Typography>
           </CardContent>
         </Card>
       </Grid>

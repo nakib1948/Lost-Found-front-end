@@ -21,6 +21,8 @@ import { TextField } from "@mui/material";
 import { getUserInfo } from "@/services/authService";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
 import { useCreateFoundItemMutation } from "@/redux/api/foundItemApi";
+import Navbar from "@/Components/shared/Navbar/Navbar";
+import Footer from "@/Components/shared/Footer/Footer";
 const defaultTheme = createTheme();
 const FoundItempage = () => {
   const {
@@ -33,7 +35,6 @@ const FoundItempage = () => {
   } = useForm<FieldValues>();
   const [createFoundItem] = useCreateFoundItemMutation();
   const handleRegister = async (values: FieldValues) => {
-   
     const user = await getUserInfo();
     const imgUrl = await imgUpload(values.image[0]);
     const data: FieldValues = {
@@ -61,208 +62,216 @@ const FoundItempage = () => {
     }
   };
   return (
-    <Container>
-      <HeaderSection
-        title=" Submit Found Property Report"
-        subTitle=" Report found item by providing its category, description, date,
-          location, and your contact details. This helps us identify and return
-          the item quickly."
-      />
-      <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="md">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <form onSubmit={handleSubmit(handleRegister)}>
-              <Box sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="foundItemName"
-                      variant="outlined"
-                      {...register("foundItemName", {
-                        required: "foundItemName is required",
-                      })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.foundItemName}
-                      helperText={errors.foundItemName?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth error={!!errors.itemCategory}>
-                      <InputLabel id="demo-simple-select-label">
-                        Item Category
-                      </InputLabel>
-                      <Controller
-                        name="itemCategory"
-                        control={control}
-                        defaultValue=""
-                        rules={{ required: "itemCategory is required" }}
-                        render={({ field }) => (
-                          <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            size="small"
-                            label="itemCategory"
-                            {...field}
-                            fullWidth
-                          >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={"Phone"}>Phone</MenuItem>
-                            <MenuItem value={"Watch"}>Watch</MenuItem>
-                            <MenuItem value={"Walet"}>Walet</MenuItem>
-                            <MenuItem value={"Money"}>Money</MenuItem>
-                            <MenuItem value={"Document"}>Document</MenuItem>
-                            <MenuItem value={"Instrument"}>Instrument</MenuItem>
-                          </Select>
-                        )}
-                      />
-                      <FormHelperText>
-                        {errors.itemCategory?.message}
-                      </FormHelperText>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="phone"
-                      variant="outlined"
-                      {...register("phone", {
-                        required: "phone is required",
-                      })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.phone}
-                      helperText={errors.phone?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="location"
-                      variant="outlined"
-                      {...register("location", {
-                        required: "location is required",
-                      })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.location}
-                      helperText={errors.location?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth error={!!errors.district}>
-                      <InputLabel id="demo-simple-select-label">
-                        District
-                      </InputLabel>
-                      <Controller
-                        name="district"
-                        control={control}
-                        defaultValue=""
-                        rules={{ required: "district is required" }}
-                        render={({ field }) => (
-                          <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            size="small"
-                            label="district"
-                            {...field}
-                            fullWidth
-                          >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={"Chittagong"}>Chittagong</MenuItem>
-                            <MenuItem value={"Dhaka"}>Dhaka</MenuItem>
-                            <MenuItem value={"Khulna"}>Khulna</MenuItem>
-                            <MenuItem value={"Rajsahi"}>Rajsahi</MenuItem>
-                            <MenuItem value={"Borisal"}>Borisal</MenuItem>
-                            <MenuItem value={"sylet"}>sylet</MenuItem>
-                          </Select>
-                        )}
-                      />
-                      <FormHelperText>
-                        {errors.district?.message}
-                      </FormHelperText>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="date"
-                      type="date"
-                      variant="outlined"
-                      {...register("date", { required: "date is required" })}
-                      fullWidth
-                      size="small"
-                      error={!!errors.date}
-                      helperText={errors.date?.message}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <Button
-                      sx={{ py: 1 }}
-                      variant="contained"
-                      fullWidth
-                      component="label"
-                    >
-                      Upload Item Image
-                      <input
-                        {...register("image", {
-                          required: "image is required",
+    <>
+      <Navbar />
+      <Container>
+        <HeaderSection
+          title=" Submit Found Property Report"
+          subTitle=" Report found item by providing its category, description, date,
+        location, and your contact details. This helps us identify and return
+        the item quickly."
+        />
+        <ThemeProvider theme={defaultTheme}>
+          <Container component="main" maxWidth="md">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <form onSubmit={handleSubmit(handleRegister)}>
+                <Box sx={{ mt: 3 }}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="foundItemName"
+                        variant="outlined"
+                        {...register("foundItemName", {
+                          required: "foundItemName is required",
                         })}
-                        type="file"
-                        hidden
+                        fullWidth
+                        size="small"
+                        error={!!errors.foundItemName}
+                        helperText={errors.foundItemName?.message}
                       />
-                    </Button>
-                    {errors.image && (
-                      <small className="text-red-500" role="alert">
-                        {errors.image.message}
-                      </small>
-                    )}
-                  </Grid>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth error={!!errors.itemCategory}>
+                        <InputLabel id="demo-simple-select-label">
+                          Item Category
+                        </InputLabel>
+                        <Controller
+                          name="itemCategory"
+                          control={control}
+                          defaultValue=""
+                          rules={{ required: "itemCategory is required" }}
+                          render={({ field }) => (
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              size="small"
+                              label="itemCategory"
+                              {...field}
+                              fullWidth
+                            >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                              <MenuItem value={"Phone"}>Phone</MenuItem>
+                              <MenuItem value={"Watch"}>Watch</MenuItem>
+                              <MenuItem value={"Walet"}>Walet</MenuItem>
+                              <MenuItem value={"Money"}>Money</MenuItem>
+                              <MenuItem value={"Document"}>Document</MenuItem>
+                              <MenuItem value={"Instrument"}>
+                                Instrument
+                              </MenuItem>
+                            </Select>
+                          )}
+                        />
+                        <FormHelperText>
+                          {errors.itemCategory?.message}
+                        </FormHelperText>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="phone"
+                        variant="outlined"
+                        {...register("phone", {
+                          required: "phone is required",
+                        })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.phone}
+                        helperText={errors.phone?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="location"
+                        variant="outlined"
+                        {...register("location", {
+                          required: "location is required",
+                        })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.location}
+                        helperText={errors.location?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl fullWidth error={!!errors.district}>
+                        <InputLabel id="demo-simple-select-label">
+                          District
+                        </InputLabel>
+                        <Controller
+                          name="district"
+                          control={control}
+                          defaultValue=""
+                          rules={{ required: "district is required" }}
+                          render={({ field }) => (
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              size="small"
+                              label="district"
+                              {...field}
+                              fullWidth
+                            >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                              <MenuItem value={"Chittagong"}>
+                                Chittagong
+                              </MenuItem>
+                              <MenuItem value={"Dhaka"}>Dhaka</MenuItem>
+                              <MenuItem value={"Khulna"}>Khulna</MenuItem>
+                              <MenuItem value={"Rajsahi"}>Rajsahi</MenuItem>
+                              <MenuItem value={"Borisal"}>Borisal</MenuItem>
+                              <MenuItem value={"sylet"}>sylet</MenuItem>
+                            </Select>
+                          )}
+                        />
+                        <FormHelperText>
+                          {errors.district?.message}
+                        </FormHelperText>
+                      </FormControl>
+                    </Grid>
 
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="outlined-basic"
-                      label="description"
-                      multiline
-                      variant="outlined"
-                      {...register("description", {
-                        required: "description is required",
-                      })}
-                      fullWidth
-                      error={!!errors.description}
-                      helperText={errors.description?.message}
-                    />
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="date"
+                        type="date"
+                        variant="outlined"
+                        {...register("date", { required: "date is required" })}
+                        fullWidth
+                        size="small"
+                        error={!!errors.date}
+                        helperText={errors.date?.message}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <Button
+                        sx={{ py: 1 }}
+                        variant="contained"
+                        fullWidth
+                        component="label"
+                      >
+                        Upload Item Image
+                        <input
+                          {...register("image", {
+                            required: "image is required",
+                          })}
+                          type="file"
+                          hidden
+                        />
+                      </Button>
+                      {errors.image && (
+                        <small className="text-red-500" role="alert">
+                          {errors.image.message}
+                        </small>
+                      )}
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        id="outlined-basic"
+                        label="description"
+                        multiline
+                        variant="outlined"
+                        {...register("description", {
+                          required: "description is required",
+                        })}
+                        fullWidth
+                        error={!!errors.description}
+                        helperText={errors.description?.message}
+                      />
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Submit
-                </Button>
-              </Box>
-            </form>
-          </Box>
-        </Container>
-      </ThemeProvider>
-    </Container>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          </Container>
+        </ThemeProvider>
+      </Container>
+      <Footer/>
+    </>
   );
 };
 

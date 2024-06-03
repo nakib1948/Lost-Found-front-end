@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import { useForm, FieldValues } from "react-hook-form";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -16,6 +15,7 @@ import userLogin from "@/services/userLogin";
 import { tokenKey } from "@/constants/tokenKey";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Link from "next/link";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -31,11 +31,11 @@ export default function SignIn() {
 
     if (res.success) {
       await localStorage.setItem(tokenKey, res.data.token);
-      toast.success(res.message);
-      router.push("/");
-    }
-    else {
-      toast.error(res.message)
+      await toast.success(res.message);
+
+      window.location.href = "/";
+    } else {
+      toast.error(res.message);
     }
   };
 
@@ -96,9 +96,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Link href="/register">{"Don't have an account? Sign Up"}</Link>
               </Grid>
             </Grid>
           </form>

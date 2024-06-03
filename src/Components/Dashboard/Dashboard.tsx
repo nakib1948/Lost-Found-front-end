@@ -70,7 +70,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                   Welcome
                 </Typography>
                 <Typography color="primary" variant="subtitle1" fontWeight="bold">
-                  {data.data.user.name}
+                  {data?.data.user.name}
                 </Typography>
               </Box>
             </Box>

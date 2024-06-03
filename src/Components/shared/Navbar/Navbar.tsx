@@ -15,7 +15,9 @@ import navlogo from "@/assets/lost_found-logo.png";
 import Image from "next/image";
 import { useGetMYProfileQuery } from "@/redux/api/userApi";
 import Link from "next/link";
-
+import { getUserInfo, removeUser } from "@/services/authService";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 function Navbar() {
   const { data, isLoading, refetch } = useGetMYProfileQuery(undefined);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -24,7 +26,8 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
+  const user = getUserInfo();
+  const router = useRouter();
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,9 +42,14 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const handleLogout = () => {
+    removeUser();
+    router.push("/");
+    router.refresh();
+  };
+  
   return (
-    <AppBar position="static" sx={{ background: "#46344E"}}>
+    <AppBar position="static" sx={{ background: "#46344E" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -74,14 +82,33 @@ function Navbar() {
               }}
             >
               <MenuItem>
-                <Typography textAlign="center">Lost Items</Typography>
+                <Typography component={Link} href="/" textAlign="center">
+                  Home
+                </Typography>
               </MenuItem>
               <MenuItem>
-                <Typography textAlign="center">Found Items</Typography>
+                <Typography
+                  component={Link}
+                  href="/allLostItem"
+                  textAlign="center"
+                >
+                  Lost Items
+                </Typography>
               </MenuItem>
               <MenuItem>
-                <Typography textAlign="center">Dashboard</Typography>
+                <Typography
+                  component={Link}
+                  href="/allfounditem"
+                  textAlign="center"
+                >
+                  Found Items
+                </Typography>
               </MenuItem>
+              {user && (
+                <MenuItem>
+                  <Typography textAlign="center">Dashboard</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
 
@@ -97,50 +124,79 @@ function Navbar() {
               justifyContent: "center",
             }}
           >
-            <Typography component={Link} href="/allLostItem" sx={{ my: 2, color: "white", display: "block" }}>
+            <Typography
+              component={Link}
+              href="/"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Typography>
+            <Typography
+              component={Link}
+              href="/allLostItem"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               Lost Items
             </Typography>
-            <Typography component={Link} href="/allfounditem" sx={{ my: 2, color: "white", display: "block" }}>
+            <Typography
+              component={Link}
+              href="/allfounditem"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               Found Items
             </Typography>
-            <Typography component={Link} href="/dashboard" sx={{ my: 2, color: "white", display: "block" }}>
-              Dashboard
-            </Typography>
+            {user?.role && (
+              <Typography
+                component={Link}
+                href="/dashboard"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Dashboard
+              </Typography>
+            )}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={data?.data.image} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem>
-                <Typography textAlign="center">Home</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+          {user ? (
+            <>
+              {!isLoading && (
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar alt="Remy Sharp" src={data?.data.image} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem>
+                      <Typography component={Link} href="/" textAlign="center">
+                        Home
+                      </Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout}>
+                      <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>
+                  </Menu>
+                </Box>
+              )}
+            </>
+          ) : (
+            <Button component={Link} href="/login">
+              Login
+            </Button>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

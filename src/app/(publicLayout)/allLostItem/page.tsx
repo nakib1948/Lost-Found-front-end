@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import { useGetAllLostItemQuery } from "@/redux/api/lostItemApi";
 import AllLostItemCard from "./component/AllLostItemCard";
+import Link from "next/link";
 
 const LostItemspage = () => {
   const [page, setPage] = useState(1);
@@ -124,7 +125,7 @@ const LostItemspage = () => {
             onChange={(e)=>setSearchTerm(e.target.value)}
           />
         </Stack>
-        <Button>Report a lost item</Button>
+        <Button  component={Link} href="/lostItem">Report a lost item</Button>
       </Stack>
 
       <Grid container spacing={2} sx={{ mt: 1 }}>

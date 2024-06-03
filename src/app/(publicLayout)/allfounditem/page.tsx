@@ -20,6 +20,7 @@ import { useState } from "react";
 import { IFoundItem } from "@/types/foundItemTypes";
 import AllFoundItemCard from "./component/AllFoundItemCard";
 import { useDebounced } from "@/redux/hooks";
+import Link from "next/link";
 
 const FoundItemspage = () => {
   const [page, setPage] = useState(1);
@@ -124,7 +125,7 @@ const FoundItemspage = () => {
             onChange={(e)=>setSearchTerm(e.target.value)}
           />
         </Stack>
-         <Button>Report a found item</Button>
+         <Button  component={Link} href="/foundItem">Report a found item</Button>
       </Stack>
 
       <Grid container spacing={2} sx={{ mt: 1 }}>

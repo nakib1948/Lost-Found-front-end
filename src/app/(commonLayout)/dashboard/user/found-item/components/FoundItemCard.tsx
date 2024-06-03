@@ -17,18 +17,18 @@ export default function FoundItemCard({ data }: { data: IFoundItem }) {
       <CardMedia
         component="img"
         sx={{ height: 194, objectFit: "cover" }}
-        image={data.image}
+        image={data?.image}
         alt="Paella dish"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {data.itemCategory}
+          {data?.itemCategory}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {data.description}
+          {data?.description}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Ower Status: {data.status}
+          Ower Status: {data?.status}
         </Typography>
       </CardContent>
       <CardActions>

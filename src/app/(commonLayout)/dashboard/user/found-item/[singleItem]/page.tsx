@@ -35,7 +35,7 @@ const SingleItem = ({ params }: { params: { singleItem: string } }) => {
         toast.success(updateResponse.data.message);
       }
       refetch();
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.message);
     }
   };
@@ -80,10 +80,7 @@ const SingleItem = ({ params }: { params: { singleItem: string } }) => {
                 <CheckCircleIcon /> approve
               </Button>
             ) : (
-              
-                <Typography variant="body2" >{row.status}</Typography>
-               
-              
+              <Typography variant="body2">{row.status}</Typography>
             )}
           </Stack>
         );
@@ -93,7 +90,7 @@ const SingleItem = ({ params }: { params: { singleItem: string } }) => {
 
   return (
     <div>
-      <DataGrid rows={data.data.data} columns={columns} hideFooterPagination />
+      <DataGrid rows={data?.data?.data} columns={columns} hideFooterPagination />
       {selectedRow && (
         <ProofCard
           open={isModalOpen}
