@@ -8,17 +8,17 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Sidebar from "./Sidebar";
+import { Avatar, Typography } from "@mui/material";
+import { useGetMYProfileQuery } from "@/redux/api/userApi";
+import Loading from "../Loading/Loading";
+import { getUserInfo } from "@/services/authService";
 
 const drawerWidth = 240;
 
-export default function Dashboard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Dashboard({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-
+  const { data, isLoading, refetch } = useGetMYProfileQuery(undefined);
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -57,6 +57,24 @@ export default function Dashboard({
           >
             <MenuIcon />
           </IconButton>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Box
+              display="flex"
+              alignItems="center"   
+            >
+              <Avatar src={data?.data.image} alt="User Avatar" sx={{ width: 64, height: 64 }} />
+              <Box ml={2}>
+                <Typography variant="h6" color="primary" fontWeight="bold">
+                  Welcome
+                </Typography>
+                <Typography color="primary" variant="subtitle1" fontWeight="bold">
+                  {data.data.user.name}
+                </Typography>
+              </Box>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Box

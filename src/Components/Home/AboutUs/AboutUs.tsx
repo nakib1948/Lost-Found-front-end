@@ -10,7 +10,6 @@ import {
   Card,
   CardMedia,
 } from "@mui/material";
-import Link from "next/link";
 
 const AboutUs = () => {
   return (
@@ -39,10 +38,10 @@ const AboutUs = () => {
           </Grid>
           <Grid item xs={12} lg={7}>
             <Box width={"90%"}>
-              <Typography variant="h4" gutterBottom>
+              <Typography sx={{fontWeight: 'bold'}} variant="h4" gutterBottom>
                 Our Mission and Vision
               </Typography>
-              <Typography variant="subtitle1" sx={{ py: 2 }}>
+              <Typography variant="body1" sx={{ py: 2,fontWeight: 'bold' }}>
                 Welcome to our Lost and Found system, a dedicated platform
                 created to help reunite lost items with their rightful owners.
                 Our mission is to provide a simple, reliable, and

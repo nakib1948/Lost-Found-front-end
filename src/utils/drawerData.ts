@@ -50,7 +50,7 @@ export const drawerItems = (role: Role) => {
         },
         {
           title: "Statistics",
-          path: `${role}/statistics`,
+          path: `${role}/statistic`,
           icon: AnalyticsIcon,
         },
       );

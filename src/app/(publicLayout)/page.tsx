@@ -6,14 +6,12 @@ import LSTimeline from "@/Components/Home/Timeline/Timeline";
 
 export default function Home() {
   return (
-    <>
-      <div className="min-h-screen">
-        <IntroduceSection />
-        <LostItemSection />
-        <AboutUs />
-        <LSTimeline />
-        <Gallery />
-      </div>
-    </>
+    <div>
+      <IntroduceSection />
+      <LostItemSection />
+      <LSTimeline />
+      <AboutUs />
+      <Gallery />
+    </div>
   );
 }

@@ -1,5 +1,5 @@
-import bgImg from "@/assets/lost_found-bg.jpg";
-
+"use client"
+import { TypeAnimation } from "react-type-animation";
 import {
   Container,
   Box,
@@ -27,10 +27,9 @@ const IntroduceSection = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: `url(https://i.ibb.co/hYrDTpf/output-onlinepngtools.png)`,
+          backgroundImage: `url(https://i.ibb.co/82bJv42/michael-dziedzic-1bjs-ASjhfk-E-unsplash.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          
           zIndex: -1,
         },
       }}
@@ -49,7 +48,22 @@ const IntroduceSection = () => {
           <Grid item xs={12} lg={7}>
             <Box width={"90%"}>
               <Typography color="white" variant="h4" sx={{fontWeight: 'bold'}} gutterBottom>
-                Retrieve your lost items, return what you have found!
+              <TypeAnimation
+                sequence={[
+                  // Same substring at the start will only be typed once, initially
+                  "Retrieve your lost items, return what you have found!",
+                  1000,
+                  "Reunite lost belongings with their rightful owners!",
+                  1000,
+                  "Help us bring lost items back to their homes!",
+                  1000,
+                  "Connecting lost items with their owners, one at a time!"
+                ]}
+                speed={40}
+                style={{ fontSize: "1em" }}
+                repeat={Infinity}
+              />
+                
               </Typography>
               <Typography color="white" variant="subtitle1" sx={{ py: 2,fontWeight: 'bold' }} >
                 Welcome to our Lost and Found platform, your go-to place for
@@ -61,7 +75,7 @@ const IntroduceSection = () => {
               <Button component={Link} href="/foundItem" variant="contained" color="primary" size="large">
                 Report a Found Item
               </Button>
-              <Button component={Link} href="/lostItem" variant="outlined" sx={{ml:1}} color="primary" size="large">
+              <Button component={Link} href="/lostItem" variant="outlined" sx={{ml:1,color:"white"}}  size="large">
                 Report a lost Item
               </Button>
             </Box>

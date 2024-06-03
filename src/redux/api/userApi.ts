@@ -21,6 +21,15 @@ export const profileAPi = baseApi.injectEndpoints({
       },
       providesTags: [allTagTypes.getAllUser],
     }),
+    getAllStatistics: build.query({
+      query: () => {
+        return {
+          url: "/user/statistic",
+          method: "GET",
+        };
+      },
+      providesTags: [allTagTypes.getAllStatistics],
+    }),
     updateMYProfile: build.mutation({
       query: (data) => {
         return {
@@ -59,5 +68,6 @@ export const {
   useUpdateMYProfileMutation,
   useUpdatePasswordMutation,
   useGetAllUserQuery,
-  useUpdateStatusMutation
+  useUpdateStatusMutation,
+  useGetAllStatisticsQuery
 } = profileAPi;

@@ -8,20 +8,8 @@ import {
   Link,
   Divider,
   Grid,
-  IconButton,
   Stack,
 } from "@mui/material";
-import {
-  faPhone,
-  faEnvelope,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -33,7 +21,7 @@ const Footer: React.FC = () => {
     <>
       <Box
         component="footer"
-        sx={{ backgroundColor: "#3D52A0", color: "white", py: 5 }}
+        sx={{ backgroundColor: "#46344E", color: "white",mt:2, py: 5 }}
       >
         <Container maxWidth="lg">
           <Grid container spacing={4}>
@@ -127,7 +115,7 @@ const Footer: React.FC = () => {
       <Box
         component="footer"
         sx={{
-          backgroundColor: "#8697C4",
+          backgroundColor: "#46344E",
           color: "white",
           py: 2,
           textAlign: "center",

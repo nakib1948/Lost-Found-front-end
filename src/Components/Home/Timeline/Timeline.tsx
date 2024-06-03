@@ -17,7 +17,16 @@ import HeaderSection from "@/Components/HeaderSection/HeaderSection";
 
 export default function LSTimeline() {
   return (
-    <Box my={5}>
+    <Box
+      my={5}
+      sx={{
+        backgroundImage: `url(https://i.ibb.co/6DL9Gm7/white-aesthetic-background-l6pow.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <HeaderSection title="How Our Lost and Found system work" subTitle="" />
       <Grid
         container
@@ -129,16 +138,16 @@ export default function LSTimeline() {
           </Timeline>
         </Grid>
         <Grid item xs={12} lg={5}>
-            <CardMedia
-              component="img"
-              alt="bg"
-              image="https://i.ibb.co/rcyfHGm/tuxpi-com-1717408684-modified.png"
-              sx={{
-                maxHeight: "100%",
-                width: "100%",
-              }}
-            />
-          </Grid>
+          <CardMedia
+            component="img"
+            alt="bg"
+            image="https://i.ibb.co/rcyfHGm/tuxpi-com-1717408684-modified.png"
+            sx={{
+              maxHeight: "100%",
+              width: "100%",
+            }}
+          />
+        </Grid>
       </Grid>
     </Box>
   );

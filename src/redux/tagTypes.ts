@@ -15,6 +15,7 @@ export enum allTagTypes {
   updateStatus = "updateStatus",
   getAllLostItem = "getAllLostItem",
   updateLostItemStatus = "updateLostItemStatus",
+  getAllStatistics = "getAllStatistics",
 }
 
 export const allTagList = [
@@ -34,4 +35,5 @@ export const allTagList = [
   allTagTypes.updateStatus,
   allTagTypes.getAllLostItem,
   allTagTypes.updateLostItemStatus,
+  allTagTypes.getAllStatistics,
 ];
