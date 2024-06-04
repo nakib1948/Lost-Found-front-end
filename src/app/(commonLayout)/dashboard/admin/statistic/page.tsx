@@ -1,22 +1,20 @@
 "use client";
-import Loading from "@/Components/Loading/Loading";
 import { useGetAllStatisticsQuery } from "@/redux/api/userApi";
-import { Avatar, Box, Card, CardContent, Grid, Typography } from "@mui/material";
-import Statcard from "./component/Statcard";
+import {Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import claim from "@/assets/Gallery/claim.png"
 import found from "@/assets/Gallery/found.png"
 import user from "@/assets/Gallery/user.png"
 import lost from "@/assets/Gallery/lost.png"
 import Image from "next/image";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
-
+import Loading from "@/Components/Loading/Loading";
 const Statistics = () => {
   const { data, isLoading, refetch } = useGetAllStatisticsQuery(undefined);
 
   if (isLoading) {
     return <Loading />;
   }
-  console.log(data);
+  
   return (
     <Box>
         <HeaderSection title="Overall Statistic" subTitle="" />

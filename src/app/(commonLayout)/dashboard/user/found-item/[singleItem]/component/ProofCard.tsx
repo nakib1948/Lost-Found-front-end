@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Modal from "@/Components/Modal/Modal";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 type TProps = {

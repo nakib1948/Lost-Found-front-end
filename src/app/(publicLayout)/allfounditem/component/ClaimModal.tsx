@@ -29,7 +29,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
     };
     try {
       const res = await createClaim(claimData);
-      console.log(res);
+  
       if (res.data.success) {
         toast.success(res.data.message);
         reset();

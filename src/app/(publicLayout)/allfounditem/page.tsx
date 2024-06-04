@@ -1,6 +1,5 @@
 "use client";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
-import Loading from "@/Components/Loading/Loading";
 import { useFoundAllLostItemQuery } from "@/redux/api/foundItemApi";
 import {
   Box,
@@ -21,10 +20,12 @@ import { IFoundItem } from "@/types/foundItemTypes";
 import AllFoundItemCard from "./component/AllFoundItemCard";
 import { useDebounced } from "@/redux/hooks";
 import Link from "next/link";
+import Loading from "@/Components/Loading/Loading";
+import { Metadata } from "next";
 
 const FoundItemspage = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(9);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
   const [itemCategory, setitemCategory] = useState("");

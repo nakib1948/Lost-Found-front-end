@@ -4,7 +4,7 @@ import { axiosBaseQuery } from "@/axios/axiosBaseQuery";
 
 export const baseApi = createApi({
   reducerPath: "api",
-  baseQuery: axiosBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: axiosBaseQuery({ baseUrl: " https://lost-and-found-system-iota.vercel.app/api" }),
   endpoints: () => ({}),
   tagTypes:allTagList
 });

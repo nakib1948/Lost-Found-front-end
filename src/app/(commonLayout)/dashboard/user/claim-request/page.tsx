@@ -1,9 +1,9 @@
 "use client";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
-import Loading from "@/Components/Loading/Loading";
 import { useGetClaimItemQuery } from "@/redux/api/claimApi";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import Loading from "@/Components/Loading/Loading";
 const ClaimRequest = () => {
   const { data, isLoading, refetch } = useGetClaimItemQuery(undefined);
   
@@ -20,7 +20,7 @@ const ClaimRequest = () => {
   }
 
   return (
-    <Box marginTop={-5}>
+    <Box>
         <HeaderSection title="Your claim request" subTitle=""/>
         <DataGrid sx={{mt:2}} hideFooterPagination rows={data?.data} columns={columns}  getRowId={(row) => row.id}/>
     </Box>

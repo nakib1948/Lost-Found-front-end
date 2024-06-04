@@ -1,6 +1,5 @@
 "use client";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
-import Loading from "@/Components/Loading/Loading";
 import {
   useGetAllUserQuery,
   useUpdateStatusMutation,
@@ -9,6 +8,8 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 import BlockIcon from "@mui/icons-material/Block";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { toast } from "sonner";
+import Loading from "@/Components/Loading/Loading";
+
 const ManageUsers = () => {
   const { data, isLoading, refetch } = useGetAllUserQuery(undefined);
   const [updateStatus, { isLoading: updating }] = useUpdateStatusMutation();

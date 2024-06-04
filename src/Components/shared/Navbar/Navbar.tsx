@@ -148,7 +148,7 @@ function Navbar() {
             {user?.role && (
               <Typography
                 component={Link}
-                href="/dashboard"
+                href={`/dashboard/${user?.role.toLowerCase()}/profile`}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 Dashboard

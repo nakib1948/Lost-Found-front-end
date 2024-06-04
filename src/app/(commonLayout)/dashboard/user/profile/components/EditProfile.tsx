@@ -1,11 +1,9 @@
 import Modal from "@/Components/Modal/Modal";
 import { tokenKey } from "@/constants/tokenKey";
 import {
-  useGetMYProfileQuery,
   useUpdateMYProfileMutation,
 } from "@/redux/api/userApi";
 import { imgUpload } from "@/services/imgUpload";
-import userLogin from "@/services/userLogin";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useForm, FieldValues } from "react-hook-form";
 import { toast } from "sonner";

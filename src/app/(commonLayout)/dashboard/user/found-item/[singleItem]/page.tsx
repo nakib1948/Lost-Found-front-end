@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Loading from "@/Components/Loading/Loading";
 import {
   useGetSingleProductClaimQuery,
   useUpdateClaimStatusMutation,
@@ -10,7 +9,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import ProofCard from "./component/ProofCard";
 import { toast } from "sonner";
-
+import Loading from "@/Components/Loading/Loading";
 const SingleItem = ({ params }: { params: { singleItem: string } }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);

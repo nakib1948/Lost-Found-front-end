@@ -1,6 +1,5 @@
 "use client";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
-import Loading from "@/Components/Loading/Loading";
 import {
   Box,
   Button,
@@ -20,10 +19,10 @@ import { useDebounced } from "@/redux/hooks";
 import { useGetAllLostItemQuery } from "@/redux/api/lostItemApi";
 import AllLostItemCard from "./component/AllLostItemCard";
 import Link from "next/link";
-
+import Loading from "@/Components/Loading/Loading";
 const LostItemspage = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(9);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
   const [itemCategory, setitemCategory] = useState("");

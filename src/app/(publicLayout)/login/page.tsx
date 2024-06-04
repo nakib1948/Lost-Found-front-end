@@ -13,7 +13,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import userLogin from "@/services/userLogin";
 import { tokenKey } from "@/constants/tokenKey";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 const defaultTheme = createTheme();
@@ -22,13 +21,11 @@ export default function SignIn() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FieldValues>();
-  const router = useRouter();
+
   const handleLogin = async (values: FieldValues) => {
     const res = await userLogin(values);
-
     if (res.success) {
       await localStorage.setItem(tokenKey, res.data.token);
       await toast.success(res.message);

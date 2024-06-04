@@ -16,8 +16,6 @@ import { useForm, FieldValues } from "react-hook-form";
 import { TextField } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import userLogin from "@/services/userLogin";
-import { tokenKey } from "@/constants/tokenKey";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
@@ -55,16 +53,7 @@ export default function SignUp() {
       if (res.success) {
         toast.success(res.message);
         reset();
-        const loginres = await userLogin(loginData);
-
-        if (loginres.success) {
-          await localStorage.setItem(tokenKey, loginres.data.token);
-
-          router.push("/");
-          router.refresh();
-        } else {
-          toast.error(loginres.message);
-        }
+        router.push('/login')
       } else {
         toast.error(res.message);
       }

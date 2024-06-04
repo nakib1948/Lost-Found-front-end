@@ -9,8 +9,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Stack,
-  Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { imgUpload } from "@/services/imgUpload";

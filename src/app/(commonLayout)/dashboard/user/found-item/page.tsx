@@ -1,11 +1,10 @@
 "use client";
-import Loading from "@/Components/Loading/Loading";
 import { Container, Grid } from "@mui/material";
 import HeaderSection from "@/Components/HeaderSection/HeaderSection";
 import { useFoundLostItemQuery } from "@/redux/api/foundItemApi";
 import { IFoundItem } from "@/types/foundItemTypes";
 import FoundItemCard from "./components/FoundItemCard";
-
+import Loading from "@/Components/Loading/Loading";
 const FoundItemPage = () => {
   const { data, isLoading, refetch } = useFoundLostItemQuery(undefined);
   return (

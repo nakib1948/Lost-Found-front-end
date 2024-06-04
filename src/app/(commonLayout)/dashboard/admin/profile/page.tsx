@@ -3,6 +3,7 @@ import { useGetMYProfileQuery } from "@/redux/api/userApi";
 import {
   Avatar,
   Box,
+  Button,
   Container,
   Divider,
   Grid,
@@ -11,8 +12,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import EditProfile from "./components/EditProfile";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import EditProfile from "../../user/profile/components/EditProfile";
 import Loading from "@/Components/Loading/Loading";
 const UserProfilepage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

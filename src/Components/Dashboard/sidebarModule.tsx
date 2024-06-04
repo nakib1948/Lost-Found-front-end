@@ -7,20 +7,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const SideBarItem = ({ item }: any) => {
-  const linkPath = `/dashboard/${item.path}`;
+  let linkPath = `/dashboard/${item.path}`;
+  if (item.path === "/") {
+    linkPath = "/";
+  }
   const pathname = usePathname();
   return (
     <Link href={linkPath}>
-      <ListItem disablePadding
-      sx={{
-        ... (pathname === linkPath ? {
-            borderRight:"3px solid #4a536b",
-            "& svg":{
-                color:"#4a536b"
-            }
-        }:{})
-
-      }}
+      <ListItem
+        disablePadding
+        sx={{
+          ...(pathname === linkPath
+            ? {
+                borderRight: "3px solid #4a536b",
+                "& svg": {
+                  color: "#4a536b",
+                },
+              }
+            : {}),
+        }}
       >
         <ListItemButton>
           <ListItemIcon>{item.icon && <item.icon />}</ListItemIcon>
