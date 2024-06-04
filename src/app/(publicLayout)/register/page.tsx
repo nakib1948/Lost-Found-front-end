@@ -41,10 +41,6 @@ export default function SignUp() {
         image: "",
       },
     };
-    const loginData = {
-      email: values.email,
-      password: values.password,
-    };
     try {
       const imgUrl = await imgUpload(values.image[0]);
       registerData.profile.image = imgUrl;
@@ -53,7 +49,7 @@ export default function SignUp() {
       if (res.success) {
         toast.success(res.message);
         reset();
-        router.push('/login')
+        router.push("/login");
       } else {
         toast.error(res.message);
       }
@@ -91,7 +87,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     error={!!errors.name}
-                    helperText={errors.name?.message}
+                    helperText={errors.name?.message as string}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -109,7 +105,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     error={!!errors.email}
-                    helperText={errors.email?.message}
+                    helperText={errors.email?.message as string}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -129,7 +125,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     error={!!errors.password}
-                    helperText={errors.password?.message}
+                    helperText={errors.password?.message as string}
                   />
                 </Grid>
 
@@ -150,7 +146,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     error={!!errors.confrimPassword}
-                    helperText={errors.confrimPassword?.message}
+                    helperText={errors.confrimPassword?.message as string}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -163,7 +159,7 @@ export default function SignUp() {
                     fullWidth
                     size="small"
                     error={!!errors.age}
-                    helperText={errors.age?.message}
+                    helperText={errors.age?.message as string}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -177,7 +173,7 @@ export default function SignUp() {
                   </Button>
                   {errors.image && (
                     <small className="text-red-500" role="alert">
-                      {errors.image.message}
+                      {errors.image.message as string}
                     </small>
                   )}
                 </Grid>
@@ -191,7 +187,7 @@ export default function SignUp() {
                     {...register("bio", { required: "bio is required" })}
                     fullWidth
                     error={!!errors.bio}
-                    helperText={errors.bio?.message}
+                    helperText={errors.bio?.message as string}
                   />
                 </Grid>
               </Grid>
@@ -206,9 +202,7 @@ export default function SignUp() {
 
               <Grid container justifyContent="center">
                 <Grid item>
-                  <Link href="/login" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                  <Link href="/login">Already have an account? Sign in</Link>
                 </Grid>
               </Grid>
             </Box>

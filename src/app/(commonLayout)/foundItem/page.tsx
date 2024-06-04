@@ -27,7 +27,6 @@ const FoundItempage = () => {
     register,
     handleSubmit,
     reset,
-    watch,
     control,
     formState: { errors },
   } = useForm<FieldValues>();
@@ -94,7 +93,7 @@ const FoundItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.foundItemName}
-                        helperText={errors.foundItemName?.message}
+                        helperText={errors.foundItemName?.message as string}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -131,7 +130,7 @@ const FoundItempage = () => {
                           )}
                         />
                         <FormHelperText>
-                          {errors.itemCategory?.message}
+                          {errors.itemCategory?.message as string}
                         </FormHelperText>
                       </FormControl>
                     </Grid>
@@ -146,7 +145,7 @@ const FoundItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.phone}
-                        helperText={errors.phone?.message}
+                        helperText={errors.phone?.message as string}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -160,7 +159,7 @@ const FoundItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.location}
-                        helperText={errors.location?.message}
+                        helperText={errors.location?.message as string}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -197,7 +196,7 @@ const FoundItempage = () => {
                           )}
                         />
                         <FormHelperText>
-                          {errors.district?.message}
+                          {errors.district?.message as string}
                         </FormHelperText>
                       </FormControl>
                     </Grid>
@@ -212,7 +211,7 @@ const FoundItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.date}
-                        helperText={errors.date?.message}
+                        helperText={errors.date?.message as string}
                       />
                     </Grid>
 
@@ -234,7 +233,7 @@ const FoundItempage = () => {
                       </Button>
                       {errors.image && (
                         <small className="text-red-500" role="alert">
-                          {errors.image.message}
+                          {errors.image.message as string}
                         </small>
                       )}
                     </Grid>
@@ -250,7 +249,7 @@ const FoundItempage = () => {
                         })}
                         fullWidth
                         error={!!errors.description}
-                        helperText={errors.description?.message}
+                        helperText={errors.description?.message as string}
                       />
                     </Grid>
                   </Grid>
@@ -268,7 +267,7 @@ const FoundItempage = () => {
           </Container>
         </ThemeProvider>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 };

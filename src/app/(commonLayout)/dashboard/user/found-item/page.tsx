@@ -10,9 +10,9 @@ const FoundItemPage = () => {
   return (
     <Container>
       {isLoading && <Loading />}
-      <HeaderSection title="Your Found Item" subTitle=""/>
-      <Grid container spacing={2} sx={{mt:1}}>
-        {data?.data.map((data:IFoundItem, index: number) => (
+      <HeaderSection title="Your Found Item" subTitle="" />
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        {data?.data.map((data: IFoundItem, index: number) => (
           <Grid item xs={12} sm={10} md={4} key={index}>
             <FoundItemCard data={data} />
           </Grid>

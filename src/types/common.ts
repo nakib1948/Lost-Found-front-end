@@ -27,7 +27,7 @@ interface IProfile {
   image: string;
 }
 
-export interface IUser {
+export interface IUsers {
   name: string;
   email: string;
   password: string;

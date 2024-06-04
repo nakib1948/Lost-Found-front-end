@@ -5,7 +5,6 @@ import LostItemSection from "@/Components/Home/LostItemSection/LostItemSection";
 import LSTimeline from "@/Components/Home/Timeline/Timeline";
 
 export default function Home() {
-  
   return (
     <div>
       <IntroduceSection />

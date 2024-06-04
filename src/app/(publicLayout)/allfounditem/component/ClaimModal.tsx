@@ -29,7 +29,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
     };
     try {
       const res = await createClaim(claimData);
-  
+
       if (res.data.success) {
         toast.success(res.data.message);
         reset();
@@ -37,7 +37,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
       } else {
         toast.error(res.data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.message);
     }
   };
@@ -56,7 +56,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
                 fullWidth
                 size="small"
                 error={!!errors.phone}
-                helperText={errors.phone?.message}
+                helperText={errors.phone?.message as string}
               />
             </Grid>
 
@@ -67,7 +67,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
               </Button>
               {errors.imageProf && (
                 <small className="text-red-500" role="alert">
-                  {errors.imageProf.message}
+                  {errors.imageProf.message as string}
                 </small>
               )}
             </Grid>
@@ -82,7 +82,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
                 fullWidth
                 size="small"
                 error={!!errors.lostDate}
-                helperText={errors.lostDate?.message}
+                helperText={errors.lostDate?.message as string}
               />
             </Grid>
 
@@ -98,7 +98,7 @@ const ClaimModal = ({ open, setOpen, data }: TProps) => {
                 })}
                 fullWidth
                 error={!!errors.claimRequest}
-                helperText={errors.claimRequest?.message}
+                helperText={errors.claimRequest?.message as string}
               />
             </Grid>
           </Grid>

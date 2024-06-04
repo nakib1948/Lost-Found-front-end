@@ -18,6 +18,8 @@ import Link from "next/link";
 import { getUserInfo, removeUser } from "@/services/authService";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { tokenKey } from "@/constants/tokenKey";
+import { deleteCookies } from "@/services/deleteCookies";
 function Navbar() {
   const { data, isLoading, refetch } = useGetMYProfileQuery(undefined);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -44,10 +46,11 @@ function Navbar() {
   };
   const handleLogout = () => {
     removeUser();
+    deleteCookies(tokenKey);
     router.push("/");
     router.refresh();
   };
-  
+
   return (
     <AppBar position="static" sx={{ background: "#46344E" }}>
       <Container maxWidth="xl">
@@ -81,31 +84,20 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem>
-                <Typography component={Link} href="/" textAlign="center">
-                  Home
-                </Typography>
+              <MenuItem component={Link} href="/">
+                <Typography textAlign="center">Home</Typography>
               </MenuItem>
-              <MenuItem>
-                <Typography
+              <MenuItem component={Link} href="/allLostItem">
+                <Typography textAlign="center">Lost Items</Typography>
+              </MenuItem>
+              <MenuItem component={Link} href="/allfounditem">
+                <Typography textAlign="center">Found Items</Typography>
+              </MenuItem>
+              {user?.role && (
+                <MenuItem
                   component={Link}
-                  href="/allLostItem"
-                  textAlign="center"
+                  href={`/dashboard/${user?.role.toLowerCase()}/profile`}
                 >
-                  Lost Items
-                </Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography
-                  component={Link}
-                  href="/allfounditem"
-                  textAlign="center"
-                >
-                  Found Items
-                </Typography>
-              </MenuItem>
-              {user && (
-                <MenuItem>
                   <Typography textAlign="center">Dashboard</Typography>
                 </MenuItem>
               )}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Modal from "@/Components/Modal/Modal";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 type TProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +19,7 @@ const ProofCard = ({ open, setOpen, data }: TProps) => {
         />
         <CardContent>
           <Typography gutterBottom variant="body1" component="div">
-             Lost Date
+            Lost Date
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
             <CalendarMonthIcon /> {data?.lostDate}

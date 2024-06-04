@@ -73,7 +73,7 @@ const ChangePassword = () => {
               fullWidth
               size="small"
               error={!!errors.password}
-              helperText={errors.password?.message}
+              helperText={errors.password?.message as string}
               sx={{ mt: 2 }}
             />
             <TextField
@@ -92,7 +92,7 @@ const ChangePassword = () => {
               fullWidth
               size="small"
               error={!!errors.newpassword}
-              helperText={errors.newpassword?.message}
+              helperText={errors.newpassword?.message as string}
               sx={{ my: 2 }}
             />
             <TextField
@@ -111,7 +111,7 @@ const ChangePassword = () => {
               fullWidth
               size="small"
               error={!!errors.confrimNewpassword}
-              helperText={errors.confrimNewpassword?.message}
+              helperText={errors.confrimNewpassword?.message as string}
             />
             <Button
               type="submit"

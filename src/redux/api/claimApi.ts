@@ -27,7 +27,6 @@ export const claimApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      invalidatesTags: [allTagTypes.getSingleProductClaim],
     }),
     updateClaimStatus: build.mutation({
       query: (data) => {

@@ -79,7 +79,7 @@ const LostItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.ItemCategory}
-                        helperText={errors.ItemCategory?.message}
+                        helperText={errors.ItemCategory?.message as string}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -93,7 +93,7 @@ const LostItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.phone}
-                        helperText={errors.phone?.message}
+                        helperText={errors.phone?.message as string}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -107,7 +107,7 @@ const LostItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.location}
-                        helperText={errors.location?.message}
+                        helperText={errors.location?.message as string}
                       />
                     </Grid>
 
@@ -121,7 +121,7 @@ const LostItempage = () => {
                         fullWidth
                         size="small"
                         error={!!errors.date}
-                        helperText={errors.date?.message}
+                        helperText={errors.date?.message as string}
                       />
                     </Grid>
 
@@ -143,7 +143,7 @@ const LostItempage = () => {
                       </Button>
                       {errors.image && (
                         <small className="text-red-500" role="alert">
-                          {errors.image.message}
+                          {errors.image.message as string}
                         </small>
                       )}
                     </Grid>
@@ -159,7 +159,7 @@ const LostItempage = () => {
                         })}
                         fullWidth
                         error={!!errors.description}
-                        helperText={errors.description?.message}
+                        helperText={errors.description?.message as string}
                       />
                     </Grid>
                   </Grid>

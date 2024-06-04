@@ -123,10 +123,12 @@ const FoundItemspage = () => {
             id="standard-basic"
             label="Search Item"
             variant="standard"
-            onChange={(e)=>setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Stack>
-         <Button  component={Link} href="/foundItem">Report a found item</Button>
+        <Button component={Link} href="/foundItem">
+          Report a found item
+        </Button>
       </Stack>
 
       <Grid container spacing={2} sx={{ mt: 1 }}>

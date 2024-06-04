@@ -3,6 +3,9 @@ import { decodedToken } from "@/utils/jwt";
 import { checkAndRemoveExpiredToken } from "./checkAndRemoveExpiredToken";
 
 export const storeUserInfo = async (token: string) => {
+  if (!tokenKey || typeof window === "undefined") {
+    return "";
+  }
   return localStorage.setItem(tokenKey, token);
 };
 
@@ -21,13 +24,18 @@ export const getUserInfo = () => {
   }
 };
 
-export const isLoggedIn =  () => {
-  const authToken = localStorage.getItem(tokenKey);
-  const checkExpiration =  checkAndRemoveExpiredToken(authToken);
-  if (authToken ) {
+export const isLoggedIn = () => {
+  if (!tokenKey || typeof window === "undefined") {
+    return "";
+  }
+  const authToken: string | null = localStorage.getItem(tokenKey);
+  if (authToken) {
+    const checkExpiration = checkAndRemoveExpiredToken(authToken);
+  }
+  if (authToken) {
     return !!authToken;
   }
-  return false
+  return false;
 };
 
 export const removeUser = () => {

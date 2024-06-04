@@ -10,14 +10,19 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditProfile from "./components/EditProfile";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import Loading from "@/Components/Loading/Loading";
+import { useRouter } from "next/navigation";
 const UserProfilepage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data, isLoading, refetch } = useGetMYProfileQuery(undefined);
+  const router = useRouter();
 
+  useEffect(() => {
+    refetch()
+  }, []);
   return (
     <>
       <EditProfile

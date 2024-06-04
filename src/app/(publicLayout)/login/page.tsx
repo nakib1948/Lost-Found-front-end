@@ -15,6 +15,7 @@ import userLogin from "@/services/userLogin";
 import { tokenKey } from "@/constants/tokenKey";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -23,14 +24,15 @@ export default function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>();
-
+  const router = useRouter();
   const handleLogin = async (values: FieldValues) => {
     const res = await userLogin(values);
     if (res.success) {
       await localStorage.setItem(tokenKey, res.data.token);
       await toast.success(res.message);
 
-      window.location.href = "/";
+      router.replace("/");
+      router.refresh()
     } else {
       toast.error(res.message);
     }
@@ -65,7 +67,7 @@ export default function SignIn() {
               fullWidth
               size="small"
               error={!!errors.email}
-              helperText={errors.email?.message}
+              helperText={errors.email?.message as string}
               sx={{
                 my: 2,
               }}
@@ -81,7 +83,7 @@ export default function SignIn() {
               fullWidth
               size="small"
               error={!!errors.password}
-              helperText={errors.password?.message}
+              helperText={errors.password?.message as string}
             />
             <Button
               type="submit"

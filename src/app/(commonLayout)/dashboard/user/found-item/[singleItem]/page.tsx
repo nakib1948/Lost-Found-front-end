@@ -89,7 +89,11 @@ const SingleItem = ({ params }: { params: { singleItem: string } }) => {
 
   return (
     <div>
-      <DataGrid rows={data?.data?.data} columns={columns} hideFooterPagination />
+      <DataGrid
+        rows={data?.data?.data}
+        columns={columns}
+        hideFooterPagination
+      />
       {selectedRow && (
         <ProofCard
           open={isModalOpen}

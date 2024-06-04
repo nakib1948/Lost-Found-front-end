@@ -1,8 +1,6 @@
 import Modal from "@/Components/Modal/Modal";
 import { tokenKey } from "@/constants/tokenKey";
-import {
-  useUpdateMYProfileMutation,
-} from "@/redux/api/userApi";
+import { useUpdateMYProfileMutation } from "@/redux/api/userApi";
 import { imgUpload } from "@/services/imgUpload";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useForm, FieldValues } from "react-hook-form";
@@ -42,11 +40,11 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
       if (updateResponse.data.success) {
         await localStorage.setItem(tokenKey, updateResponse.data.data.token);
         toast.success(updateResponse.data.message);
-      } 
+      }
       await refetch();
       setOpen(false);
-    } catch (error) {
-      toast.error(error.message)
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -65,7 +63,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
                 size="small"
                 error={!!errors.name}
                 defaultValue={data?.data.user.name}
-                helperText={errors.name?.message}
+                helperText={errors.name?.message as string}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -84,7 +82,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
                 size="small"
                 defaultValue={data?.data.user.email}
                 error={!!errors.email}
-                helperText={errors.email?.message}
+                helperText={errors.email?.message as string}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -98,7 +96,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
                 size="small"
                 defaultValue={data?.data.age}
                 error={!!errors.age}
-                helperText={errors.age?.message}
+                helperText={errors.age?.message as string}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -108,7 +106,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
               </Button>
               {errors.image && (
                 <small className="text-red-500" role="alert">
-                  {errors.image.message}
+                  {errors.image.message as string}
                 </small>
               )}
             </Grid>
@@ -123,7 +121,7 @@ const EditProfile = ({ open, setOpen, id, data, refetch }: TProps) => {
                 fullWidth
                 defaultValue={data?.data.bio}
                 error={!!errors.bio}
-                helperText={errors.bio?.message}
+                helperText={errors.bio?.message as string}
               />
             </Grid>
           </Grid>
