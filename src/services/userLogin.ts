@@ -12,8 +12,8 @@ const userLogin = async (data: FieldValues) => {
     cache: "no-store",
   });
   const userInfo = await res.json();
-  if (userInfo.data.token) {
-    setTokenToCookie(userInfo.data.token);
+  if (userInfo?.data?.token) {
+    setTokenToCookie(userInfo?.data?.token);
   }
   return userInfo;
 };

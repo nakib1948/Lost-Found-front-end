@@ -64,54 +64,11 @@ const LostItemspage = () => {
         title="All Lost Item"
         subTitle="search for your lost item by category, location,keywords"
       />
-      <Stack direction="row" alignItems="center">
-        <Typography variant="body1">Filter By:</Typography>
-        <Box marginLeft={2}>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Location
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              label="Location"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"Chittagong"}>Chittagong</MenuItem>
-              <MenuItem value={"Dhaka"}>Dhaka</MenuItem>
-              <MenuItem value={"Khulna"}>Khulna</MenuItem>
-              <MenuItem value={"Rajsahi"}>Rajsahi</MenuItem>
-              <MenuItem value={"Borisal"}>Borisal</MenuItem>
-              <MenuItem value={"sylet"}>sylet</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Category
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={itemCategory}
-              onChange={(e) => setitemCategory(e.target.value)}
-              label="Category"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"Phone"}>Phone</MenuItem>
-              <MenuItem value={"Watch"}>Watch</MenuItem>
-              <MenuItem value={"Walet"}>Walet</MenuItem>
-              <MenuItem value={"Money"}>Money</MenuItem>
-              <MenuItem value={"Document"}>Document</MenuItem>
-              <MenuItem value={"Instrument"}>Instrument</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
+      <Stack
+        sx={{ display: "flex", flexWrap: "wrap" }}
+        direction="row"
+        alignItems="center"
+      >
         <Stack mx={"auto"} direction="row" alignItems="center">
           <Typography mr={2} variant="body1">
             Search By:
@@ -124,7 +81,15 @@ const LostItemspage = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Stack>
-        <Button component={Link} href="/lostItem">
+        <Button
+          sx={{
+            mt: {
+              xs: 2,
+            },
+          }}
+          component={Link}
+          href="/lostItem"
+        >
           Report a lost item
         </Button>
       </Stack>

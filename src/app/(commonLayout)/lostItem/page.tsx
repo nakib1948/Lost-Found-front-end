@@ -16,7 +16,7 @@ const LostItempage = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>();
   const [createLostItem] = useCreateLostItemMutation();
@@ -36,6 +36,7 @@ const LostItempage = () => {
       const res = await createLostItem(data);
       if (res.data.success) {
         toast.success(res.data.message);
+        reset()
       } else {
         toast.error(res.data.message);
       }

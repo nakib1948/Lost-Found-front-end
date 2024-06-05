@@ -42,7 +42,7 @@ const FoundItemspage = () => {
   }
 
   if (location) {
-    query["location"] = location;
+    query["district"] = location;
   }
 
   if (itemCategory) {
@@ -66,7 +66,11 @@ const FoundItemspage = () => {
         title="All found Item"
         subTitle="search for your lost item by category, location,keywords"
       />
-      <Stack direction="row" alignItems="center">
+      <Stack
+        sx={{ display: "flex", flexWrap: "wrap" }}
+        direction="row"
+        alignItems="center"
+      >
         <Typography variant="body1">Filter By:</Typography>
         <Box marginLeft={2}>
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -114,7 +118,16 @@ const FoundItemspage = () => {
             </Select>
           </FormControl>
         </Box>
-        <Stack mx={"auto"} direction="row" alignItems="center">
+        <Stack
+          sx={{
+            mx: {
+              xs: 0,
+              md: "auto",
+            },
+          }}
+          direction="row"
+          alignItems="center"
+        >
           <Typography mr={2} variant="body1">
             Search By:
           </Typography>
@@ -126,11 +139,18 @@ const FoundItemspage = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Stack>
-        <Button component={Link} href="/foundItem">
+        <Button
+          sx={{
+            mt: {
+              xs: 2,
+            },
+          }}
+          component={Link}
+          href="/foundItem"
+        >
           Report a found item
         </Button>
       </Stack>
-
       <Grid container spacing={2} sx={{ mt: 1 }}>
         {data?.data.map((data: IFoundItem, index: number) => (
           <Grid item xs={12} sm={10} md={4} key={index}>

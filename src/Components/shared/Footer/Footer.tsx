@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
                   Lost and Found organization
                 </span>
                 <br />
-                Exploring Recipes since 2022
+                Exploring since 2022
               </Typography>
             </Grid>
 
@@ -94,12 +94,12 @@ const Footer: React.FC = () => {
               <Stack direction="row" alignItems="center" sx={{ mb: 1 }}>
                 <EmailIcon />
                 <Link color="inherit" underline="none">
-                  Tastytreats@gmail.com
+                  lostandfound@gmail.com
                 </Link>
               </Stack>
               <Stack direction="row" alignItems="center" sx={{ mb: 1 }}>
                 <LocationOnIcon />
-                Blackwell Street, Dry Creek, New York
+                Mirpur DOHS 12, Dhaka, Bangladesh
               </Stack>
               <Divider sx={{ my: 2, backgroundColor: "#ccc" }} />
               <Stack direction="row">
