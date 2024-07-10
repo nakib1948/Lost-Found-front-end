@@ -1,6 +1,6 @@
 # Lost and Found System
 
-This project is a sample implementation of a Book Management service application using Typescript, React, Redux, Node.js, Express, and MongoDB.
+This project is a sample implementation that enables users to report and search for lost or found items securely using Nextjs,nodejs,expressjs,postgresSql, and prima.
 
 ---
 
